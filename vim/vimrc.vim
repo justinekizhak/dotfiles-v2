@@ -1,99 +1,145 @@
-" General Vim settings
-	syntax on
-	let mapleader=","
-	set autoindent
-	set tabstop=4
-	set shiftwidth=4
-	set dir=/tmp/
-	set relativenumber 
-	set number
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "   JUSTINE THOMAS
+    "   Date: 17 April 2018
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-	set cursorline
-	hi Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
+"""""""""""""""""""""""""""""COMMON SETTINGS START"""""""""""""""""""""""""""""
+    "Automatic reloading of .vimrc
+        autocmd! bufwritepost .vimrc source %
+    
+    "Need to set this flag on in order to have many cool features on
+        set nocompatible
+ 
+    "Syntax hightlighting by default
+        syntax on
 
-	set hlsearch
-	nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
-	nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
-	nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on."<CR>
+    "Numbering and relative numbering
+        set number
+        set relativenumber
+    
+    set clipboard=unnamed
+    
+    "Working driectory
+        cd ~/Documents/
 
-	nnoremap n nzzzv
-	nnoremap N Nzzzv
+    "Show search matches as you type
+        set incsearch
+    
+    "Highlight the entire word when searching for it
+        set hlsearch
+    
+    "Showing matching brackets
+        set showmatch
+    
+    "Changing the place where the new default window opens
+        set splitbelow
+        set splitright
+    
+    "Split navigations
+        nnoremap <C-J> <C-W><C-J>
+        nnoremap <C-K> <C-W><C-K>
+        nnoremap <C-L> <C-W><C-L>
+        nnoremap <C-H> <C-W><C-H>
+    
+    "History and undo's
+        set history=1000         " remember more commands and search history
+        set undolevels=1000      " use many levels of undo
+    
+    "Persistent undo
+        set undofile                " Save undo's after file closes
+        set undodir=$HOME/.vim/undo " where to save undo histories
+        set undolevels=1000         " How many undos
+        set undoreload=10000        " number of lines to save for undo
+    
+    "====[ Make the 81st column stand out ]====================
+        highlight ColorColumn ctermbg=black
+        call matchadd('ColorColumn', '\%81v', 100)
+    
+    "Indent properly based on the current file
+        filetype indent plugin on
+        filetype plugin on
+    
+    "Tab's and spaces
+        set tabstop=4     " a tab is four spaces
+        set backspace=indent,eol,start
+                          " allow backspacing over everything in insert mode
+        set autoindent    " always set autoindenting on
+        set copyindent    " copy the previous indentation on autoindenting
+        set shiftwidth=4  " number of spaces to use for autoindenting
+        set shiftround    " use multiple of shiftwidth when indenting with 
+                		  " '<' and '>'
+        set expandtab
+        set shiftwidth=4
+        set softtabstop=4
+    
+    "Easier moving of code blocks
+        " Try to go into visual mode (v), thenselect several lines of code here and
+        " then press ``>`` several times.
+        vnoremap < <gv  " better indentation
+        vnoremap > >gv  " better indentation
+    
+    "Showing line numbers and length
+        set tw=79   " width of document (used by gd)
+        set nowrap  " don't automatically wrap on load
+        set fo-=t   " don't automatically wrap text when typing
+    
+    "No more annoying sounds
+        "set visualbell
+    
+    "UTF8 Support
+        set encoding=utf-8
+    
+    "Enable folding with the spacebar
+        nnoremap <space> za
+    "Enable folding
+        set foldmethod=indent
+        set foldlevel=99
 
-	nnoremap H 0
-	nnoremap L $
-	nnoremap J G
-	nnoremap K gg
+    "Select all keymaping
+        map <C-a> <esc>ggVG<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-	map <tab> %
+"dragvisuals plugin
+    set runtimepath^=~/.vim/plugin/dragvisuals.vim
+    
+    vmap  <expr>  H        DVB_Drag('left')                         
+    vmap  <expr>  L        DVB_Drag('right')                        
+    vmap  <expr>  J        DVB_Drag('down')                         
+    vmap  <expr>  K        DVB_Drag('up')                           
+    
+    vmap  <expr>  D        DVB_Duplicate()                          
+                                                                    
+    " Remove any introduced trailing whitespace after moving...     
+    let g:DVB_TrimWS = 1                                            
 
-	set backspace=indent,eol,start
+"""""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
+        "required
+        filetype off                  
+        
+        "set the runtime path to include Vundle and initialize
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
+        
+        "Installing Vundle
+        Plugin 'VundleVim/Vundle.vim'
 
-	nnoremap <Space> za
-	nnoremap <leader>z zMzvzz
+        ""Add all your plugins below (note older versions of Vundle used Bundle instead of Plugin)
+    "==========================================================================
+        "1) Airline status bar
+            Plugin 'vim-airline/vim-airline'
+            Plugin 'vim-airline/vim-airline-themes'
 
-	nnoremap vv 0v$
+        "2)NERDTree
+            Plugin 'scrooloose/nerdtree'
+            map <C-n> :NERDTreeToggle<CR>
 
-	set listchars=tab:\|\ 
-	nnoremap <leader><tab> :set list!<cr>
-	set pastetoggle=<F2>
-	set mouse=a
-	set incsearch
+        "3)ctrl-p fuzzy file search
+            Plugin 'ctrlpvim/ctrlp.vim.git'
 
-" Language Specific
-	" General
-		inoremap <leader>for <esc>Ifor (int i = 0; i < <esc>A; i++) {<enter>}<esc>O<tab>
-		inoremap <leader>if <esc>Iif (<esc>A) {<enter>}<esc>O<tab>
-		
-
-	" Java
-		inoremap <leader>sys <esc>ISystem.out.println(<esc>A);
-		vnoremap <leader>sys yOSystem.out.println(<esc>pA);
-
-	" Java
-		inoremap <leader>con <esc>Iconsole.log(<esc>A);
-		vnoremap <leader>con yOconsole.log(<esc>pA);
-
-	" C++
-		inoremap <leader>cout <esc>Istd::cout << <esc>A << std::endl;
-		vnoremap <leader>cout yOstd::cout << <esc>pA << std:endl;
-
-	" C
-		inoremap <leader>out <esc>Iprintf(<esc>A);<esc>2hi
-		vnoremap <leader>out yOprintf(, <esc>pA);<esc>h%a
-
-	" Typescript
-		autocmd BufNewFile,BufRead *.ts set syntax=javascript
-		autocmd BufNewFile,BufRead *.tsx set syntax=javascript
-
-	" Markup
-		inoremap <leader>< <esc>I<<esc>A><esc>yypa/<esc>O<tab>
-
-
-" File and Window Management 
-	inoremap <leader>w <Esc>:w<CR>
-	nnoremap <leader>w :w<CR>
-
-	inoremap <leader>q <ESC>:q<CR>
-	nnoremap <leader>q :q<CR>
-
-	inoremap <leader>x <ESC>:x<CR>
-	nnoremap <leader>x :x<CR>
-
-	nnoremap <leader>e :Ex<CR>
-	nnoremap <leader>t :tabnew<CR>:Ex<CR>
-	nnoremap <leader>v :vsplit<CR>:w<CR>:Ex<CR>
-	nnoremap <leader>s :split<CR>:w<CR>:Ex<CR>
-
-" Return to the same line you left off at
-	augroup line_return
-		au!
-		au BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
-			\	execute 'normal! g`"zvzz' |
-			\ endif
-	augroup END
-
-" Future stuff
-	"Swap line
-	"Insert blank below and above
-
+        "4)vim-tmux
+           Plugin 'christoomey/vim-tmux-navigator.git' 
+    "==========================================================================
+        ""All of your Plugins must be added before the following line
+        call vundle#end()            " required
+        filetype plugin indent on    " required
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
