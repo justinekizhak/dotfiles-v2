@@ -63,3 +63,6 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 source ~/dotfiles/zsh/prompt.sh
+
+# refer this image https://misc.flogisoft.com/_media/bash/colors_format/256_colors_bg.png
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=21'
