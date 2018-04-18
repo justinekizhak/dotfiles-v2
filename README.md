@@ -1,12 +1,15 @@
 # Awesome Dotfiles
 
 Simple, but extensive customization of ZSH, TMUX, and Vim. 
+This is a forked branch of Parth/dotfiles. 
+This contains my personal vimrc config and some other stuffs that i modified to suit my personal preferences
 
 [![VideoWalkthrough](https://img.youtube.com/vi/UgDz_9i2nwc/0.jpg)](https://www.youtube.com/watch?v=UgDz_9i2nwc)
 
 ## Setup Options
 
 There's 3 ways in which you can use this, depending on how much you think you'll be customizing.
+But I strongly suggest that you fork this repo and then clone this into your system, as most of the changes I do may cause your terminal to break.
 
 One of the key features is that this implementation stays in sync across all your machines. So depending on how much you'd like to customize your configuration, you have a few options:
 
@@ -66,13 +69,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 ### Keybindings
 | Key Stroke | What It Does |
 |------------|--------------|
-| Ctrl-H     | Runs ``cd ~/`` |
-| Ctrl-K     | Runs ``cd ..`` |
 | Ctrl-G     | Runs ``git add -A; git commit -v && git push`` |
-| Ctrl-V     | Runs ``fc``. Takes last command and puts it in a vim buffer. |
-| Ctrl-S     | Add's ``sudo`` to the beginning of the buffer. |
-| Ctrl-L     | Run's ``ls``. |
-| Ctrl-O     | Equivalent to hitting ``Enter``. |
 
 ### Plugins
 
@@ -83,7 +80,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 
 ## [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor))
 
-* Leader key has ben remapped to `,`
+* My vimrc file.
 
 ## [Tmux](https://en.wikipedia.org/wiki/Tmux)
 
