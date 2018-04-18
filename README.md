@@ -1,6 +1,7 @@
 # Awesome Dotfiles
 
 Simple, but extensive customization of ZSH, TMUX, and Vim. 
+
 This is a forked branch of Parth/dotfiles. 
 This contains my personal vimrc config and some other stuffs that i modified to suit my personal preferences
 
@@ -9,7 +10,8 @@ This contains my personal vimrc config and some other stuffs that i modified to 
 ## Setup Options
 
 There's 3 ways in which you can use this, depending on how much you think you'll be customizing.
-But I strongly suggest that you fork this repo and then clone this into your system, as most of the changes I do may cause your terminal to break.
+
+But I strongly suggest that you fork this repo and then clone this into your system, as some of the changes I do may cause your terminal to break.
 
 One of the key features is that this implementation stays in sync across all your machines. So depending on how much you'd like to customize your configuration, you have a few options:
 
