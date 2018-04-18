@@ -17,10 +17,11 @@
         set number
         set relativenumber
     
-    set clipboard=unnamed
+    "Enabling system clipboard
+        set clipboard=unnamedplus
     
     "Working driectory
-        cd ~/Documents/
+        cd ~/
 
     "Show search matches as you type
         set incsearch
