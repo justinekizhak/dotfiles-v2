@@ -1,4 +1,4 @@
-#time_out () { perl -e 'alarm shift; exec @ARGV' "$@"; }
+time_out () { perl -e 'alarm shift; exec @ARGV' "$@"; }
 
 # Run tmux if exists
 if command -v tmux>/dev/null; then
@@ -9,7 +9,7 @@ fi
 
 #(cd ~/dotfiles && time_out 3 git pull && time_out 3 git submodule update --init --recursive)
 
-timeout 2 ping -q -c1 google.com > /dev/null
+time_out 3 ping -q -c1 google.com > /dev/null
  
 if [ $? -eq 0 ]
 then
