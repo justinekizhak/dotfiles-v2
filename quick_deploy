@@ -67,18 +67,26 @@ echo
 if [ -f ~/.zshrc ]; then
 	echo "zshrc exists" >> ~/.changes
     mv ~/.zshrc ~/.zshrc.old
+else
+    echo "zshrc not exists" >> ~/.changes
 fi
 if [ -f ~/.tmux.conf ]; then
 	echo "tmux.conf exists" >> ~/.changes
     mv ~/.tmux.conf ~/.tmux.conf.old
+else
+    echo "tmux.conf not exists" >> ~/.changes
 fi
 if [ -f ~/.vimrc ]; then
 	echo "vimrc exists" >> ~/.changes
     mv ~/.vimrc ~/.vimrc.old
+else
+    echo "vimrc not exists" >> ~/.changes
 fi
 if [ -d ~/.vim/ ]; then
 	echo "vim exists" >> ~/.changes
     mv ~/.vim/ ~/.vim.old/
+else
+    echo "vim not exists" >> ~/.changes
 fi
 
 printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
