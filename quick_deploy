@@ -1,4 +1,4 @@
-i#!/usr/bin/env sh
+#!/usr/bin/env sh
 prompt_install() {
 		# This could def use community support
 		if [ -x "$(command -v apt)" ]; then
