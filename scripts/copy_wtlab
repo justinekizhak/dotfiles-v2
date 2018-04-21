@@ -1,3 +1,0 @@
-rm -r /opt/lampp/htdocs/wtlab/*
-cp -a ~/Documents/wtlab/* /opt/lampp/htdocs/wtlab/
-echo "copy done"

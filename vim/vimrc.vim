@@ -6,7 +6,7 @@
 """""""""""""""""""""""""""""COMMON SETTINGS START"""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
         " autocmd! bufwritepost .vimrc source %
-        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim   
+        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
 
     " Set font according to system
     if has("mac") || has("macunix")
@@ -26,7 +26,7 @@
 
     "Need to set this flag on in order to have many cool features on
         set nocompatible
- 
+
     "Syntax hightlighting by default
         syntax on
 
@@ -45,8 +45,8 @@
             set clipboard+=unnamedplus
         endif
     endif
-    
-    "Working directory 
+
+    "Working directory
     if has('unix')
         cd ~/
     endif
@@ -56,27 +56,27 @@
 
     "Show search matches as you type
         set incsearch
-    
+
     "Highlight the entire word when searching for it
         set hlsearch
-    
+
     "Showing matching brackets
         set showmatch
-    
+
     "Changing the place where the new default window opens
         set splitbelow
         set splitright
-    
+
     "Split navigations
         nnoremap <C-J> <C-W><C-J>
         nnoremap <C-K> <C-W><C-K>
         nnoremap <C-L> <C-W><C-L>
         nnoremap <C-H> <C-W><C-H>
-    
+
     "History and undo's
         set history=1000         " remember more commands and search history
         set undolevels=1000      " use many levels of undo
-    
+
     "Persistent undo
         set undofile                " Save undo's after file closes
         set undodir=$HOME/.vim/undo " where to save undo histories
@@ -86,11 +86,11 @@
     "====[ Make the 81st column stand out ]====================
         highlight ColorColumn ctermbg=black
         call matchadd('ColorColumn', '\%81v', 100)
-    
+
     "Indent properly based on the current file
         filetype indent on
         filetype plugin on
-    
+
     "Tab's and spaces
         set tabstop=4     " a tab is four spaces
         set backspace=indent,eol,start
@@ -98,29 +98,26 @@
         set autoindent    " always set autoindenting on
         set copyindent    " copy the previous indentation on autoindenting
         set shiftwidth=4  " number of spaces to use for autoindenting
-        set shiftround    " use multiple of shiftwidth when indenting with 
+        set shiftround    " use multiple of shiftwidth when indenting with
                 		  " '<' and '>'
         set expandtab
         set shiftwidth=4
         set softtabstop=4
-    
+
     "Easier moving of code blocks
         " Try to go into visual mode (v), thenselect several lines of code here and
         " then press ``>`` several times.
         vnoremap < <gv  " better indentation
         vnoremap > >gv  " better indentation
-    
+
     "Showing line numbers and length
         set tw=79   " width of document (used by gd)
         set nowrap  " don't automatically wrap on load
         set fo-=t   " don't automatically wrap text when typing
-    
-    "No more annoying sounds
-        "set visualbell
-    
+
     "UTF8 Support
         set encoding=utf-8
-    
+
     "Enable folding with the spacebar
         nnoremap <space> za
 
@@ -131,30 +128,20 @@
     "Select all keymaping
         map <C-a> <esc>ggVG<CR>
 
-    " Delete trailing white space on save, useful for some filetypes ;)
-    fun! CleanExtraSpaces()
-        let save_cursor = getpos(".")
-        let old_query = getreg('/')
-        silent! %s/\s\+$//e
-        call setpos('.', save_cursor)
-        call setreg('/', old_query)
-    endfun
-
     if has("autocmd")
-        autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+        autocmd BufWritePre * %s/\s\+$//e
     endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
         "required
-        filetype off                  
-        
+        filetype off
+
         "set the runtime path to include Vundle and initialize
         set rtp+=~/.vim/bundle/Vundle.vim
         call vundle#begin()
-        
+
         "Installing Vundle
         Plugin 'VundleVim/Vundle.vim'
 
@@ -191,7 +178,7 @@
                 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
         "4)vim-tmux
-           Plugin 'christoomey/vim-tmux-navigator.git' 
+           Plugin 'christoomey/vim-tmux-navigator.git'
 
         "5) ale
             Plugin 'w0rp/ale'
