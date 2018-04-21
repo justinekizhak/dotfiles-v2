@@ -38,7 +38,7 @@
         cd ~/
     endif
     if has('macunix')
-        cd ~/MEGA/coding/
+        cd ~/MEGA/
     endif
 
     "Show search matches as you type
@@ -119,6 +119,10 @@
         autocmd BufWritePre * %s/\s\+$//e
     endif
 
+    if executable('ag')
+        " Use Ag over Grep
+        set grepprg=ag\ --nogroup\ --nocolor
+    endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
@@ -141,28 +145,29 @@
         "2)NERDTree
             Plugin 'scrooloose/nerdtree'
             map <C-n> :NERDTreeToggle<CR>
+            let NERDTreeQuitOnOpen=1
 
         "3)ctrl-p fuzzy file search
-            Plugin 'ctrlpvim/ctrlp.vim.git'
-            let g:ctrlp_custom_ignore = {
-                \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$|backup',
-                \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-                \ }
-                set wildignore+=*/tmp/*,*.so,*.swp,*.zip,~/Library/*
-                " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-                if executable('ag')
-                    " Use Ag over Grep
-                    set grepprg=ag\ --nogroup\ --nocolor
-                    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-                    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-                    " ag is fast enough that CtrlP doesn't need to cache
-                    let g:ctrlp_use_caching = 0
-                endif
-                let g:ctrlp_working_path_mode = 'ra'
-                let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
-                let g:ctrlp_match_window_reversed = 1
-                let g:ctrlp_clear_cache_on_exit=0
-                let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        "    Plugin 'ctrlpvim/ctrlp.vim.git'
+        "    let g:ctrlp_custom_ignore = {
+        "        \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$|backup',
+        "        \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+        "        \ }
+        "        set wildignore+=*/tmp/*,*.so,*.swp,*.zip,~/Library/*
+        "        " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+        "        if executable('ag')
+        "            " Use Ag over Grep
+        "            set grepprg=ag\ --nogroup\ --nocolor
+        "            " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        "            let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        "            " ag is fast enough that CtrlP doesn't need to cache
+        "            let g:ctrlp_use_caching = 0
+        "        endif
+        "        let g:ctrlp_working_path_mode = 'ra'
+        "        let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
+        "        let g:ctrlp_match_window_reversed = 1
+        "        let g:ctrlp_clear_cache_on_exit=0
+        "        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
         "4)vim-tmux
            Plugin 'christoomey/vim-tmux-navigator.git'
