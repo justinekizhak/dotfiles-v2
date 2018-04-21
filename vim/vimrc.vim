@@ -5,8 +5,25 @@
 
 """""""""""""""""""""""""""""COMMON SETTINGS START"""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
-        autocmd! bufwritepost .vimrc source %
-    
+        " autocmd! bufwritepost .vimrc source %
+        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim   
+
+    " Set font according to system
+    if has("mac") || has("macunix")
+        set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+    elseif has("win16") || has("win32")
+        set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+    elseif has("gui_gtk2")
+        set gfn=IBM\ Plex\ Mono:h14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+    elseif has("linux")
+        set gfn=IBM\ Plex\ Mono:h14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+    elseif has("unix")
+        set gfn=Monospace\ 11
+    endif
+
+    "Setting leader key
+        let mapleader = ","
+
     "Need to set this flag on in order to have many cool features on
         set nocompatible
  
@@ -16,7 +33,10 @@
     "Numbering and relative numbering
         set number
         set relativenumber
-    
+
+    "Quick editing of vimrc
+        map <leader>e :e! ~/dotfiles/vim/vimrc.vim<cr>
+
     " yank to clipboard
     if has("clipboard")
         set clipboard=unnamed " copy to the system clipboard
@@ -26,8 +46,13 @@
         endif
     endif
     
-    "Working driectory
+    "Working directory 
+    if has('unix')
         cd ~/
+    endif
+    if has('macunix')
+        cd ~/MEGA/coding/
+    endif
 
     "Show search matches as you type
         set incsearch
@@ -57,13 +82,13 @@
         set undodir=$HOME/.vim/undo " where to save undo histories
         set undolevels=1000         " How many undos
         set undoreload=10000        " number of lines to save for undo
-    
+
     "====[ Make the 81st column stand out ]====================
         highlight ColorColumn ctermbg=black
         call matchadd('ColorColumn', '\%81v', 100)
     
     "Indent properly based on the current file
-        filetype indent plugin on
+        filetype indent on
         filetype plugin on
     
     "Tab's and spaces
@@ -98,6 +123,7 @@
     
     "Enable folding with the spacebar
         nnoremap <space> za
+
     "Enable folding
         set foldmethod=indent
         set foldlevel=99
@@ -129,9 +155,37 @@
 
         "3)ctrl-p fuzzy file search
             Plugin 'ctrlpvim/ctrlp.vim.git'
+            let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$|backup',
+                \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+                \ }
+                set wildignore+=*/tmp/*,*.so,*.swp,*.zip,~/Library/*
+                " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+                if executable('ag')
+                    " Use Ag over Grep
+                    set grepprg=ag\ --nogroup\ --nocolor
+                    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+                    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+                    " ag is fast enough that CtrlP doesn't need to cache
+                    let g:ctrlp_use_caching = 0
+                endif
+                let g:ctrlp_working_path_mode = 'ra'
+                let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
+                let g:ctrlp_match_window_reversed = 1
+                let g:ctrlp_clear_cache_on_exit=0
+                let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
         "4)vim-tmux
            Plugin 'christoomey/vim-tmux-navigator.git' 
+
+        "5) ale
+            Plugin 'w0rp/ale'
+
+        "5) vim-repeat. required for easyclip
+            Plugin 'tpope/vim-repeat.git'
+
+        "6) Easyclip for copy pasting in vim
+            Plugin 'svermeulen/vim-easyclip'
     "==========================================================================
         ""All of your Plugins must be added before the following line
         call vundle#end()            " required
