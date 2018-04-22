@@ -3,9 +3,8 @@
     "   Date: 17 April 2018
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""COMMON SETTINGS START"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
-        " autocmd! bufwritepost .vimrc source %
         autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
 
     "Setting leader key
@@ -24,22 +23,21 @@
     "Quick editing of vimrc
         map <leader>e :e! ~/dotfiles/vim/vimrc.vim<cr>
 
-    " yank to clipboard
-    if has("clipboard")
-        set clipboard=unnamed " copy to the system clipboard
-
-        if has("unnamedplus") " X11 support
-            set clipboard+=unnamedplus
+    "Yank to clipboard
+        if has("clipboard")
+            set clipboard=unnamed " copy to the system clipboard
+            if has("unnamedplus") " X11 support
+                set clipboard+=unnamedplus
+            endif
         endif
-    endif
 
     "Working directory
-    if has('unix')
-        cd ~/
-    endif
-    if has('macunix')
-        cd ~/MEGA/
-    endif
+        if has('unix')
+            cd ~/
+        endif
+        if has('macunix')
+            cd ~/MEGA/
+        endif
 
     "Show search matches as you type
         set incsearch
@@ -70,7 +68,7 @@
         set undolevels=1000         " How many undos
         set undoreload=10000        " number of lines to save for undo
 
-    "====[ Make the 81st column stand out ]====================
+    "Make the 81st column stand out
         highlight ColorColumn ctermbg=black
         call matchadd('ColorColumn', '\%81v', 100)
 
@@ -97,8 +95,8 @@
         vnoremap < <gv  " better indentation
         vnoremap > >gv  " better indentation
 
-    "Showing line numbers and length
-        set tw=79   " width of document (used by gd)
+    "Setting the width of document
+        set tw=79
         set nowrap  " don't automatically wrap on load
         set fo-=t   " don't automatically wrap text when typing
 
@@ -115,28 +113,29 @@
     "Select all keymaping
         map <C-a> <esc>ggVG<CR>
 
-    if has("autocmd")
-        autocmd BufWritePre * %s/\s\+$//e
-    endif
+    "Delete trailing spaces on write
+        if has("autocmd")
+            autocmd BufWritePre * %s/\s\+$//e
+        endif
 
-    if executable('ag')
-        " Use Ag over Grep
-        set grepprg=ag\ --nogroup\ --nocolor
-    endif
+    " Use Ag over Grep
+        if executable('ag')
+            set grepprg=ag\ --nogroup\ --nocolor
+        endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
         "required
-        filetype off
+            filetype off
 
         "set the runtime path to include Vundle and initialize
-        set rtp+=~/.vim/bundle/Vundle.vim
-        call vundle#begin()
+            set rtp+=~/.vim/bundle/Vundle.vim
+            call vundle#begin()
 
         "Installing Vundle
-        Plugin 'VundleVim/Vundle.vim'
+            Plugin 'VundleVim/Vundle.vim'
 
-        ""Add all your plugins below (note older versions of Vundle used Bundle instead of Plugin)
+        "Add all your plugins below (note older versions of Vundle used Bundle instead of Plugin)
     "==========================================================================
         "1) Airline status bar
             Plugin 'vim-airline/vim-airline'
@@ -147,32 +146,10 @@
             map <C-n> :NERDTreeToggle<CR>
             let NERDTreeQuitOnOpen=1
 
-        "3)ctrl-p fuzzy file search
-        "    Plugin 'ctrlpvim/ctrlp.vim.git'
-        "    let g:ctrlp_custom_ignore = {
-        "        \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$|backup',
-        "        \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-        "        \ }
-        "        set wildignore+=*/tmp/*,*.so,*.swp,*.zip,~/Library/*
-        "        " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-        "        if executable('ag')
-        "            " Use Ag over Grep
-        "            set grepprg=ag\ --nogroup\ --nocolor
-        "            " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-        "            let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-        "            " ag is fast enough that CtrlP doesn't need to cache
-        "            let g:ctrlp_use_caching = 0
-        "        endif
-        "        let g:ctrlp_working_path_mode = 'ra'
-        "        let g:ctrlp_cache_dir = $HOME.'/.vim/.cache/ctrlp'
-        "        let g:ctrlp_match_window_reversed = 1
-        "        let g:ctrlp_clear_cache_on_exit=0
-        "        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-        "4)vim-tmux
+        "3)vim-tmux
            Plugin 'christoomey/vim-tmux-navigator.git'
 
-        "5) ale
+        "4) ale
             Plugin 'w0rp/ale'
 
         "5) vim-repeat. required for easyclip
@@ -184,7 +161,7 @@
         "7) CommandT
             Plugin 'wincent/command-t'
     "==========================================================================
-        ""All of your Plugins must be added before the following line
-        call vundle#end()            " required
-        filetype plugin indent on    " required
+        "All of your Plugins must be added before the following line
+            call vundle#end()            " required
+            filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

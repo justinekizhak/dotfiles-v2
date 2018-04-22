@@ -99,10 +99,16 @@ cd ~/.vim/bundle/command-t/ruby/command-t/ext/command-t
 ruby extconf.rb
 make
 
-echo "installing silver searcher"
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo apt install silversearcher-ag
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install the_silver_searcher
+if ! [ -x "$(command -v ag)" ]; then
+    echo "silver_searcher not_installed" >> ~/.changes
+    if [ -x "$(command -v brew)" ]; then
+        brew install the_silver_searcher
+    elif [ -x "$(command -v apt)" ]; then
+        sudo apt install silversearcher-ag
+    fi
+else
+    echo "silver_searcher is installed."
+    echo "silver_searcher installed" >> ~/.changes
 fi
+
 echo "Please log out and log back in for default shell to be initialized."
