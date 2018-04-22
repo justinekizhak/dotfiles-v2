@@ -13,7 +13,12 @@
     "Need to set this flag on in order to have many cool features on
         set nocompatible
 
-    "Syntax hightlighting by default
+    "Spellcheck for vim
+        set spell
+        set spelllang=en_us
+        set spellfile=~/dotfiles/vim/en.utf-8.add
+
+    "Syntax highlighting by default
         syntax on
 
     "Numbering and relative numbering
@@ -32,11 +37,11 @@
         endif
 
     "Working directory
-        if has('unix')
-            cd ~/
+        if has('unix')      "this will be your working directory
+            cd ~/           "if your OS is Linux
         endif
-        if has('macunix')
-            cd ~/MEGA/
+        if has('macunix')   "if its macOS then
+            cd ~/MEGA/      "this will be your directory
         endif
 
     "Show search matches as you type
@@ -52,20 +57,20 @@
         set splitbelow
         set splitright
 
-    "Split navigations
+    "Split navigation's
         nnoremap <C-J> <C-W><C-J>
         nnoremap <C-K> <C-W><C-K>
         nnoremap <C-L> <C-W><C-L>
         nnoremap <C-H> <C-W><C-H>
 
-    "History and undo's
+    "History and undo
         set history=1000         " remember more commands and search history
         set undolevels=1000      " use many levels of undo
 
     "Persistent undo
-        set undofile                " Save undo's after file closes
+        set undofile                " Save undo after file closes
         set undodir=$HOME/.vim/undo " where to save undo histories
-        set undolevels=1000         " How many undos
+        set undolevels=1000         " How many undo
         set undoreload=10000        " number of lines to save for undo
 
     "Make the 81st column stand out
@@ -80,17 +85,17 @@
         set tabstop=4     " a tab is four spaces
         set backspace=indent,eol,start
                           " allow backspacing over everything in insert mode
-        set autoindent    " always set autoindenting on
-        set copyindent    " copy the previous indentation on autoindenting
-        set shiftwidth=4  " number of spaces to use for autoindenting
-        set shiftround    " use multiple of shiftwidth when indenting with
+        set autoindent    " always set auto indenting on
+        set copyindent    " copy the previous indentation on auto indenting
+        set shiftwidth=4  " number of spaces to use for auto indenting
+        set shiftround    " use multiple of shift width when indenting with
                 		  " '<' and '>'
         set expandtab
         set shiftwidth=4
         set softtabstop=4
 
     "Easier moving of code blocks
-        " Try to go into visual mode (v), thenselect several lines of code here and
+        " Try to go into visual mode (v), then select several lines of code here and
         " then press ``>`` several times.
         vnoremap < <gv  " better indentation
         vnoremap > >gv  " better indentation
@@ -110,7 +115,7 @@
         set foldmethod=indent
         set foldlevel=99
 
-    "Select all keymaping
+    "Ctrl-a to select all text
         map <C-a> <esc>ggVG<CR>
 
     "Delete trailing spaces on write
