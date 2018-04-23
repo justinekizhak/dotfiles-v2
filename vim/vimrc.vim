@@ -14,7 +14,7 @@
         set nocompatible
 
     "Spellcheck for vim
-        set spell
+        autocmd FileType latex,tex,md,markdown setlocal spell
         set spelllang=en_us
         set spellfile=~/dotfiles/vim/en.utf-8.add
 
