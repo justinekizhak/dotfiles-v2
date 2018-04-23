@@ -1,0 +1,15 @@
+#panes are numbered clockwise
+#pane 0 starts with vim
+tmux selectp -t 0
+tmux send-keys "vim" C-m
+
+#bottom pane 15%
+tmux split-window -v -p 15
+
+#spliting pane 0 into 2
+tmux selectp -t 0
+tmux split-window -h
+
+#spliting right pane in 2
+tmux selectp -t 1
+tmux split-window -v
