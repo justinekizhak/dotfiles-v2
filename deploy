@@ -111,4 +111,7 @@ else
     echo "silver_searcher installed" >> ~/.changes
 fi
 
+cd ~/dotfiles/vim/
+./install_ycm
+
 echo "Please log out and log back in for default shell to be initialized."
