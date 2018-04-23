@@ -11,11 +11,11 @@ download_llvm(){
     mkdir ~/ycm_temp
     cd ~/ycm_temp
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        wget  -O  ~/ycm_temp/ "http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
+        wget "http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
         tar -xJf clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
         mv clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04 llvm_root_dir
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        curl http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz -o ~/ycm_temp/
+        curl http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz
         tar -xzf clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz
         mv clang+llvm-6.0.0-x86_64-apple-darwin llvm_root_dir
     fi
@@ -38,6 +38,8 @@ install_ycm () {
     cmake --build . --target ycm_core --config Release
     cd ~/.vim/bundle/YouCompleteMe
     python3 install.py --clang-completer
+    rm -rf ~/ycm_temp
+    rm -rf ~/ycm_build
 }
 
 # Checking the python support based on the line output received
@@ -47,7 +49,7 @@ has_python_support=$(vim --version | grep -c python)
 vim_version=$(vim --version | head -1 | grep -o '[0-9]\.[0-9]')
 
 # Getting patch version from vim
-vim_patch_version=$(vim --version | sed -n '3p' | grep -o '[0-9][0-9][0-9][0-9]')
+vim_patch_version=$(vim --version | sed -n '2,3p' | grep -o '[0-9][0-9][0-9][0-9]')
 
 if [ $(echo "$vim_version >= 7.4" | bc -l) ] && \
     [ $has_python_support ] && \
