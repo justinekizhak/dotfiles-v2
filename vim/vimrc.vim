@@ -165,6 +165,11 @@
 
         "7) CommandT
             Plugin 'wincent/command-t'
+
+        "8)YouCompleteMe
+            "if has('unix')      "installing YCM on linux
+                Plugin 'Valloric/YouCompleteMe'
+            "endif
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required
