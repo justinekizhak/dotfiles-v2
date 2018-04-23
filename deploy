@@ -95,9 +95,10 @@ printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
 echo
 cd ~ && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -c 'PluginInstall' -c 'qa!'
-cd ~/.vim/bundle/command-t/ruby/command-t/ext/command-t
-ruby extconf.rb
-make
+
+#installing cmdT
+cd ~/dotfiles/vim/
+./install_cmdT.sh
 
 if ! [ -x "$(command -v ag)" ]; then
     echo "silver_searcher not_installed" >> ~/.changes
@@ -112,6 +113,6 @@ else
 fi
 
 cd ~/dotfiles/vim/
-./install_ycm
+./install_ycm.sh
 
 echo "Please log out and log back in for default shell to be initialized."
