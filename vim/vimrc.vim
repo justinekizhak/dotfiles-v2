@@ -167,9 +167,9 @@
             Plugin 'wincent/command-t'
 
         "8)YouCompleteMe
-            "if has('unix')      "installing YCM on linux
-                Plugin 'Valloric/YouCompleteMe'
-            "endif
+            Plugin 'Valloric/YouCompleteMe'
+            "Youcompleteme fix
+            let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required
