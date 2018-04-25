@@ -58,15 +58,24 @@ fi
 # source ~/dotfiles/zsh/plugins/oh-my-zsh/themes/agnoster.zsh-theme
 # ZSH_THEME="agnoster"
 # source ~/dotfiles/zsh/prompt.sh
-source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status root_indicator background_jobs command_execution_time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
-POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
-POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
-POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
+
+# Powerline for zsh
+    source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
+    # for contents on left and right
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status root_indicator background_jobs command_execution_time)
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
+    # show error code
+        POWERLEVEL9K_STATUS_OK=false
+    # show raw error values
+        POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
+    # display execution time
+        POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
+        POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=2
+    # customizing how it shows which vi mode I am in
+        POWERLEVEL9K_VI_INSERT_MODE_STRING="I"
+        POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
+    # using patched font
+        POWERLEVEL9K_MODE='awesome-patched'
 
 # refer this image https://misc.flogisoft.com/_media/bash/colors_format/256_colors_bg.png
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'

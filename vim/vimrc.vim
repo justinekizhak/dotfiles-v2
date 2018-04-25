@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   JUSTINE THOMAS
-    "   Last Modified:      Tue 24 Apr 2018 11:39:39 PM IST
+    "   Last Modified:      Wed 25 Apr 2018 03:05:23 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -146,6 +146,10 @@
         "1) Airline status bar
             Plugin 'vim-airline/vim-airline'
             Plugin 'vim-airline/vim-airline-themes'
+            let g:airline_theme='solarized'
+           " powerline symbols
+            let g:airline_left_sep = ''
+            let g:airline_right_sep = ''
 
         "2)NERDTree
             Plugin 'scrooloose/nerdtree'
