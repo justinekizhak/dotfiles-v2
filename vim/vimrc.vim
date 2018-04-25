@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   JUSTINE THOMAS
-    "   Date: 17 April 2018
+    "   Last Modified:      Tue 24 Apr 2018 11:39:39 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -39,7 +39,7 @@
     "Working directory
         if has('unix')      "this will be your working directory
             cd ~/           "if your OS is Linux
-        endif
+        endif               "Please change these values for yourself
         if has('macunix')   "if its macOS then
             cd ~/MEGA/      "this will be your directory
         endif
@@ -52,6 +52,7 @@
 
     "Showing matching brackets
         set showmatch
+        hi MatchParen cterm=underline ctermbg=green ctermfg=blue
 
     "Changing the place where the new default window opens
         set splitbelow
@@ -156,6 +157,12 @@
 
         "4) ale
             Plugin 'w0rp/ale'
+            " Set this in your vimrc file to disabling highlighting
+            let g:ale_set_highlights = 0
+            " Set this. Airline will handle the rest.
+            let g:airline#extensions#ale#enabled = 1
+            highlight clear ALEErrorSign
+            highlight clear ALEWarningSign
 
         "5) vim-repeat. required for easyclip
             Plugin 'tpope/vim-repeat.git'
@@ -170,6 +177,12 @@
             Plugin 'Valloric/YouCompleteMe'
             "Youcompleteme fix
             let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+        "9)AutoPairs
+            Plugin 'jiangmiao/auto-pairs.git'
+
+        "10)Timestamp
+            Plugin 'vim-scripts/timestamp.vim'
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required
