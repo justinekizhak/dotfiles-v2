@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Thu 26 Apr 2018 05:21:10 PM IST
+    "   Last Modified:      Fri 27 Apr 2018 01:50:39 AM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -197,7 +197,7 @@
                 let g:UltiSnipsEditSplit="vertical"
 
         "12)SuperTabs
-                Plugin 'ervandew/supertab'
+            Plugin 'ervandew/supertab'
             " make YCM compatible with UltiSnips (using supertab)
                 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
                 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -206,6 +206,12 @@
                 let g:UltiSnipsExpandTrigger = "<c-space>"
                 let g:UltiSnipsJumpForwardTrigger = "<tab>"
                 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+        "13)highlight text as they are typed
+            Plugin 'osyo-manga/vim-over.git'
+
+        "14)git diff
+            Plugin 'airblade/vim-gitgutter'
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required
