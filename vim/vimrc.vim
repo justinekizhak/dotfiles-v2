@@ -1,11 +1,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "   JUSTINE THOMAS
-    "   Last Modified:      Wed 25 Apr 2018 03:05:23 PM IST
+    "   Created by:         JUSTINE THOMAS
+    "   Last Modified:      Thu 26 Apr 2018 10:50:13 AM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
-        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
+        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/.vimrc
 
     "Setting leader key
         let mapleader = ","
@@ -148,8 +148,8 @@
             Plugin 'vim-airline/vim-airline-themes'
             let g:airline_theme='solarized'
            " powerline symbols
-            let g:airline_left_sep = ''
-            let g:airline_right_sep = ''
+                let g:airline_left_sep = ''
+                let g:airline_right_sep = ''
 
         "2)NERDTree
             Plugin 'scrooloose/nerdtree'
@@ -162,9 +162,9 @@
         "4) ale
             Plugin 'w0rp/ale'
             " Set this in your vimrc file to disabling highlighting
-            let g:ale_set_highlights = 0
+                let g:ale_set_highlights = 0
             " Set this. Airline will handle the rest.
-            let g:airline#extensions#ale#enabled = 1
+                let g:airline#extensions#ale#enabled = 1
             highlight clear ALEErrorSign
             highlight clear ALEWarningSign
 
@@ -187,6 +187,18 @@
 
         "10)Timestamp
             Plugin 'vim-scripts/timestamp.vim'
+
+        "11)UltiSnips
+            " Track the engine.
+                Plugin 'SirVer/ultisnips'
+            " Snippets are separated from the engine. Add this if you want them:
+                Plugin 'honza/vim-snippets'
+            " UltiSnips triggering
+            let g:UltiSnipsExpandTrigger = '∆'
+            let g:UltiSnipsJumpForwardTrigger = '∆'
+            let g:UltiSnipsJumpBackwardTrigger = '˚'
+            " If you want :UltiSnipsEdit to split your window.
+                let g:UltiSnipsEditSplit="vertical"
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required
