@@ -57,10 +57,13 @@ fi
 
 # source ~/dotfiles/zsh/plugins/oh-my-zsh/themes/agnoster.zsh-theme
 # ZSH_THEME="agnoster"
-# source ~/dotfiles/zsh/prompt.sh
 
-# Powerline for zsh
-    source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    source ~/dotfiles/zsh/prompt.sh
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # Powerline for zsh
+        source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
     # for contents on left and right
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status root_indicator background_jobs command_execution_time)
         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
@@ -76,6 +79,8 @@ fi
         POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
     # using patched font
         POWERLEVEL9K_MODE='awesome-patched'
+fi
+
 
 # refer this image https://misc.flogisoft.com/_media/bash/colors_format/256_colors_bg.png
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'

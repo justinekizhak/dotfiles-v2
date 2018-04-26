@@ -22,7 +22,7 @@ revert_config(){
     mv $1 $SUBSTRING
 }
 
-zsh_tmux_vim-fun() {
+zsh_tmux_vim_fun() {
     cat $file | sed -n '1,3p'  |
     while IFS=" " read -r f1 f2
     do
@@ -34,16 +34,16 @@ zsh_tmux_vim-fun() {
     done
 }
 
-default_shell-fun(){
+default_shell_fun(){
     cat $file | sed -n '4p'  |
     while IFS=" " read -r f1 f2
     do
             echo default shell: $f1
-            chsh -s $($f1)
+            sudo chsh -s $f1
     done
 }
 
-old_config-fun() {
+old_config_fun() {
     cd $HOME && ls -a | tr '\n' '\n' | grep .old |
     while IFS=" " read -r f1
     do
@@ -51,5 +51,8 @@ old_config-fun() {
     done
 }
 
-
-parallel ::: zsh_tmux_vim-fun default_shell-fun old_config-fun
+zsh_tmux_vim_fun &
+default_shell_fun &
+old_config_fun &
+wait
+echo "uninstall done"

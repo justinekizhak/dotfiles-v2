@@ -31,13 +31,13 @@ check_default_shell() { if [ -z "${SHELL##*zsh*}" ] ;then
 	fi
 }
 
-install_cmdT-fun() {
+install_cmdT_fun() {
     #installing cmdT
     cd ~/dotfiles/vim/
     ./install_cmdT.sh
 }
 
-install_ag-fun() {
+install_ag_fun() {
     if ! [ -x "$(command -v ag)" ]; then
         echo "silver_searcher not_installed" >> ~/.changes
         if [ -x "$(command -v brew)" ]; then
@@ -51,7 +51,7 @@ install_ag-fun() {
     fi
 }
 
-install_ycm-fun() {
+install_ycm_fun() {
     cd ~/dotfiles/vim/
     ./install_ycm.sh
 }
@@ -75,13 +75,11 @@ else
 	exit 0
 fi
 
-check_for_software parallel
+check_for_software zsh &
 echo
-check_for_software zsh
+check_for_software vim &
 echo
-check_for_software vim
-echo
-check_for_software tmux
+check_for_software tmux &
 echo
 
 check_default_shell
@@ -108,6 +106,10 @@ echo
 cd ~ && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -c 'PluginInstall' -c 'qa!'
 
-parallel ::: install_cmdT-fun install_ag-fun install_ycm-fun
+install_cmdT_fun &
+install_ag_fun &
+install_ycm_fun &
+wait
+echo "done with installing everything"
 
 echo "Please log out and log back in for default shell to be initialized."
