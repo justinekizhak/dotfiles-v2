@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Thu 26 Apr 2018 10:50:13 AM IST
+    "   Last Modified:      Thu 26 Apr 2018 11:51:36 AM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -194,9 +194,9 @@
             " Snippets are separated from the engine. Add this if you want them:
                 Plugin 'honza/vim-snippets'
             " UltiSnips triggering
-            let g:UltiSnipsExpandTrigger = '∆'
-            let g:UltiSnipsJumpForwardTrigger = '∆'
-            let g:UltiSnipsJumpBackwardTrigger = '˚'
+            let g:UltiSnipsExpandTrigger = '∆'          "alt-j to trigger Snippets"
+            let g:UltiSnipsJumpForwardTrigger = '∆'     "and also alt-j to move to next placeholder"
+            let g:UltiSnipsJumpBackwardTrigger = '˚'    "alt-k to go to previous placeholder"
             " If you want :UltiSnipsEdit to split your window.
                 let g:UltiSnipsEditSplit="vertical"
     "==========================================================================
