@@ -1,21 +1,14 @@
 #!/usr/bin/env sh
 prompt_install() {
-		# This could def use community support
-		if [ -x "$(command -v brew)" ]; then
-			brew install $1
+    if [ -x "$(command -v brew)" ]; then
+        brew install $1
 
-		elif [ -x "$(command -v apt)" ]; then
-			sudo apt install $1 -y
+    elif [ -x "$(command -v apt)" ]; then
+        sudo apt install $1 -y
 
-		elif [ -x "$(command -v pkg)" ]; then
-			sudo pkg install $1
-
-		elif [ -x "$(command -v pacman)" ]; then
-			sudo pacman -S $1
-
-		else
-			echo "I'm not sure what your package manager is! Please install $1 on your own and run this deploy script again. Tests for package managers are in the deploy script you just ran starting at line 13. Feel free to make a pull request at https://github.com/parth/dotfiles :)"
-		fi
+    else
+        echo "I'm not sure what your package manager is! Please install $1 on your own and run this deploy script again. Tests for package managers are in the deploy script you just ran starting at line 13. Feel free to make a pull request at https://github.com/parth/dotfiles :)"
+    fi
 }
 
 check_for_software() {
@@ -38,6 +31,35 @@ check_default_shell() { if [ -z "${SHELL##*zsh*}" ] ;then
 	fi
 }
 
+install_cmdT-fun() {
+    #installing cmdT
+    cd ~/dotfiles/vim/
+    ./install_cmdT.sh
+}
+
+install_ag-fun() {
+    if ! [ -x "$(command -v ag)" ]; then
+        echo "silver_searcher not_installed" >> ~/.changes
+        if [ -x "$(command -v brew)" ]; then
+            brew install the_silver_searcher
+        elif [ -x "$(command -v apt)" ]; then
+            sudo apt install silversearcher-ag
+        fi
+    else
+        echo "silver_searcher is installed."
+        echo "silver_searcher installed" >> ~/.changes
+    fi
+}
+
+install_ycm-fun() {
+    cd ~/dotfiles/vim/
+    ./install_ycm.sh
+}
+
+
+
+
+
 echo "Installing zsh, vim, and tmux with their default options"
 
 echo "Let's get started? (y/n)"
@@ -53,6 +75,8 @@ else
 	exit 0
 fi
 
+check_for_software parallel
+echo
 check_for_software zsh
 echo
 check_for_software vim
@@ -64,28 +88,16 @@ check_default_shell
 
 echo
 if [ -f ~/.zshrc ]; then
-	echo "zshrc exists" >> ~/.changes
-    mv ~/.zshrc ~/.zshrc.old
-else
-    echo "zshrc not_exists" >> ~/.changes
+    mv ~/.zshrc ~/.zshrc-old
 fi
 if [ -f ~/.tmux.conf ]; then
-	echo "tmux.conf exists" >> ~/.changes
-    mv ~/.tmux.conf ~/.tmux.conf.old
-else
-    echo "tmux.conf not_exists" >> ~/.changes
+    mv ~/.tmux.conf ~/.tmux.conf-old
 fi
 if [ -f ~/.vimrc ]; then
-	echo "vimrc exists" >> ~/.changes
-    mv ~/.vimrc ~/.vimrc.old
-else
-    echo "vimrc not_exists" >> ~/.changes
+    mv ~/.vimrc ~/.vimrc-old
 fi
 if [ -d ~/.vim/ ]; then
-	echo "vim exists" >> ~/.changes
-    mv ~/.vim/ ~/.vim.old/
-else
-    echo "vim not_exists" >> ~/.changes
+    mv ~/.vim/ ~/.vim-old/
 fi
 
 printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
@@ -96,23 +108,6 @@ echo
 cd ~ && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim -c 'PluginInstall' -c 'qa!'
 
-#installing cmdT
-cd ~/dotfiles/vim/
-./install_cmdT.sh
-
-if ! [ -x "$(command -v ag)" ]; then
-    echo "silver_searcher not_installed" >> ~/.changes
-    if [ -x "$(command -v brew)" ]; then
-        brew install the_silver_searcher
-    elif [ -x "$(command -v apt)" ]; then
-        sudo apt install silversearcher-ag
-    fi
-else
-    echo "silver_searcher is installed."
-    echo "silver_searcher installed" >> ~/.changes
-fi
-
-cd ~/dotfiles/vim/
-./install_ycm.sh
+parallel ::: install_cmdT-fun install_ag-fun install_ycm-fun
 
 echo "Please log out and log back in for default shell to be initialized."

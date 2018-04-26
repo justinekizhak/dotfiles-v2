@@ -1,0 +1,55 @@
+#!/usr/bin/env sh
+file="$HOME/.changes"
+
+
+uninstall_program (){
+    echo removing $1
+    if [ -x "$(command -v brew)" ]; then
+        brew uninstall $1
+
+    elif [ -x "$(command -v apt)" ]; then
+        sudo apt remove $1 -y
+
+    else
+        echo "I was not able to uninstall program"
+    fi
+}
+
+revert_config(){
+    echo reverting your $1 config to previous
+    SUBSTRING=$(echo $1| cut -d'-' -f 1)
+    echo $SUBSTRING
+    mv $1 $SUBSTRING
+}
+
+zsh_tmux_vim-fun() {
+    cat $file | sed -n '1,3p'  |
+    while IFS=" " read -r f1 f2
+    do
+            if [ "$f2" == "installed" ]; then
+                echo "you had already installed $f1"
+            else
+                uninstall_program $f1
+            fi
+    done
+}
+
+default_shell-fun(){
+    cat $file | sed -n '4p'  |
+    while IFS=" " read -r f1 f2
+    do
+            echo default shell: $f1
+            chsh -s $($f1)
+    done
+}
+
+old_config-fun() {
+    cd $HOME && ls -a | tr '\n' '\n' | grep .old |
+    while IFS=" " read -r f1
+    do
+        revert_config $f1
+    done
+}
+
+
+parallel ::: zsh_tmux_vim-fun default_shell-fun old_config-fun

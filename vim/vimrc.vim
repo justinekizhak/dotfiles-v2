@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Thu 26 Apr 2018 11:51:36 AM IST
+    "   Last Modified:      Thu 26 Apr 2018 05:21:10 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -193,12 +193,19 @@
                 Plugin 'SirVer/ultisnips'
             " Snippets are separated from the engine. Add this if you want them:
                 Plugin 'honza/vim-snippets'
-            " UltiSnips triggering
-            let g:UltiSnipsExpandTrigger = '∆'          "alt-j to trigger Snippets"
-            let g:UltiSnipsJumpForwardTrigger = '∆'     "and also alt-j to move to next placeholder"
-            let g:UltiSnipsJumpBackwardTrigger = '˚'    "alt-k to go to previous placeholder"
             " If you want :UltiSnipsEdit to split your window.
                 let g:UltiSnipsEditSplit="vertical"
+
+        "12)SuperTabs
+                Plugin 'ervandew/supertab'
+            " make YCM compatible with UltiSnips (using supertab)
+                let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+                let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+                let g:SuperTabDefaultCompletionType = '<C-n>'
+            " better key bindings for UltiSnipsExpandTrigger
+                let g:UltiSnipsExpandTrigger = "<c-space>"
+                let g:UltiSnipsJumpForwardTrigger = "<tab>"
+                let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required
