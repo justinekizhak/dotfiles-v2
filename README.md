@@ -7,7 +7,7 @@ This contains my personal vimrc config and some other stuffs that I modified to 
 
 [![VideoWalkthrough](https://img.youtube.com/vi/UgDz_9i2nwc/0.jpg)](https://www.youtube.com/watch?v=UgDz_9i2nwc)
 
-My Terminal Setup:
+#### This is how my terminal looks like
 ![alt
 text](https://github.com/justinethomas009/dotfiles/blob/master/terminal_settings/my_term_setup.png "This how my setup looks like")
 
