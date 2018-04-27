@@ -1,11 +1,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Fri 27 Apr 2018 01:50:39 AM IST
+    "   Last Modified:      Fri 27 Apr 2018 12:53:17 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
-        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/.vimrc
+        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
 
     "Setting leader key
         let mapleader = ","
@@ -130,90 +130,6 @@
         endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
-        "required
-            filetype off
-
-        "set the runtime path to include Vundle and initialize
-            set rtp+=~/.vim/bundle/Vundle.vim
-            call vundle#begin()
-
-        "Installing Vundle
-            Plugin 'VundleVim/Vundle.vim'
-
-        "Add all your plugins below (note older versions of Vundle used Bundle instead of Plugin)
-    "==========================================================================
-        "1) Airline status bar
-            Plugin 'vim-airline/vim-airline'
-            Plugin 'vim-airline/vim-airline-themes'
-            let g:airline_theme='solarized'
-           " powerline symbols
-                let g:airline_left_sep = ''
-                let g:airline_right_sep = ''
-
-        "2)NERDTree
-            Plugin 'scrooloose/nerdtree'
-            map <C-n> :NERDTreeToggle<CR>
-            let NERDTreeQuitOnOpen=1
-
-        "3)vim-tmux
-           Plugin 'christoomey/vim-tmux-navigator.git'
-
-        "4) ale
-            Plugin 'w0rp/ale'
-            " Set this in your vimrc file to disabling highlighting
-                let g:ale_set_highlights = 0
-            " Set this. Airline will handle the rest.
-                let g:airline#extensions#ale#enabled = 1
-            highlight clear ALEErrorSign
-            highlight clear ALEWarningSign
-
-        "5) vim-repeat. required for easyclip
-            Plugin 'tpope/vim-repeat.git'
-
-        "6) Easyclip for copy pasting in vim
-            Plugin 'svermeulen/vim-easyclip'
-
-        "7) CommandT
-            Plugin 'wincent/command-t'
-
-        "8)YouCompleteMe
-            Plugin 'Valloric/YouCompleteMe'
-            "Youcompleteme fix
-            let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
-        "9)AutoPairs
-            Plugin 'jiangmiao/auto-pairs.git'
-
-        "10)Timestamp
-            Plugin 'vim-scripts/timestamp.vim'
-
-        "11)UltiSnips
-            " Track the engine.
-                Plugin 'SirVer/ultisnips'
-            " Snippets are separated from the engine. Add this if you want them:
-                Plugin 'honza/vim-snippets'
-            " If you want :UltiSnipsEdit to split your window.
-                let g:UltiSnipsEditSplit="vertical"
-
-        "12)SuperTabs
-            Plugin 'ervandew/supertab'
-            " make YCM compatible with UltiSnips (using supertab)
-                let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-                let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-                let g:SuperTabDefaultCompletionType = '<C-n>'
-            " better key bindings for UltiSnipsExpandTrigger
-                let g:UltiSnipsExpandTrigger = "<c-space>"
-                let g:UltiSnipsJumpForwardTrigger = "<tab>"
-                let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-        "13)highlight text as they are typed
-            Plugin 'osyo-manga/vim-over.git'
-
-        "14)git diff
-            Plugin 'airblade/vim-gitgutter'
-    "==========================================================================
-        "All of your Plugins must be added before the following line
-            call vundle#end()            " required
-            filetype plugin indent on    " required
+"""""""""""""""""""""""""""""PLUGINS"""""""""""""""""""""""""""""""""""""""""""
+so $HOME/dotfiles/vim/plugins.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
