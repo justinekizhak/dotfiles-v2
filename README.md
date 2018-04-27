@@ -126,12 +126,12 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 * Execute `split_panes` in your shell to split your window into 4 panes. This
   is the way I like to use
 
-## fonts
+## Fonts
 
 * The `fonts` folder has my preferred font in it which is already patched for
   powerline.
 
-## terminal_settings
+## Terminal Settings
 
 * The `terminal_settings` folder contains my color scheme and my custom
   background image(it's actually my name. I wrote on a piece of paper and did
