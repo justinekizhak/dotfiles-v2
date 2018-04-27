@@ -9,7 +9,7 @@ This contains my personal vimrc config and some other stuffs that I modified to 
 
 My Terminal Setup:
 ![alt
-text](https://github.com/justinethomas009/dotfiles/terminal_settings/my_term_setup.png "This how my setup looks like")
+text](https://github.com/justinethomas009/dotfiles/blob/master/terminal_settings/my_term_setup.png "This how my setup looks like")
 
 ## Setup Options
 
