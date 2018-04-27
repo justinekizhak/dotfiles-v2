@@ -143,15 +143,15 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
   setup. But you may have to dive inside it to make it work for yourselves.
 * It is not tested.
 * It actually works like this
-    ** First when you use the `deploy`
-        script it makes a file `.changes` in your home directory which contains all
-        the changes the `deploy` is making and it also appends `-old` to your current config
-        files.
-    ** That way all your settings are maintained. And when you want to
-        uninstall the setup the `uninstall` script first checks for the `.changes`
-        and uninstall all the programs which have `not_installed` against it.
-        It's saying that a particular program was not installed before running
-        the `deploy` script so you have to uninstall it.
-    ** After that then the script checks for files with `-old` in it and it
-        renames it back.
-    ** After the script ends then you are free to delete the `dotfiles` folder.
+1. First when you use the `deploy`
+  script it makes a file `.changes` in your home directory which contains all
+  the changes the `deploy` is making and it also appends `-old` to your current config
+  files.
+2. That way all your settings are maintained. And when you want to
+  uninstall the setup the `uninstall` script first checks for the `.changes`
+  and uninstall all the programs which have `not_installed` against it.
+  It's saying that a particular program was not installed before running
+  the `deploy` script so you have to uninstall it.
+3. After that then the script checks for files with `-old` in it and it
+  renames it back.
+4. After the script ends then you are free to delete the `dotfiles` folder.
