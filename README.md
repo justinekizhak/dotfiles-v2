@@ -136,3 +136,22 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 * The `terminal_settings` folder contains my color scheme and my custom
   background image(it's actually my name. I wrote on a piece of paper and did
   some photoshop)
+
+## Uninstall
+
+* There is `uninstall` script in the folder. You can use it to uninstall the
+  setup. But you may have to dive inside it to make it work for yourselves.
+* It is not tested.
+* It actually works like this
+    ** First when you use the `deploy`
+        script it makes a file `.changes` in your home directory which contains all
+        the changes the `deploy` is making and it also appends `-old` to your current config
+        files.
+    ** That way all your settings are maintained. And when you want to
+        uninstall the setup the `uninstall` script first checks for the `.changes`
+        and uninstall all the programs which have `not_installed` against it.
+        It's saying that a particular program was not installed before running
+        the `deploy` script so you have to uninstall it.
+    ** After that then the script checks for files with `-old` in it and it
+        renames it back.
+    ** After the script ends then you are free to delete the `dotfiles` folder.
