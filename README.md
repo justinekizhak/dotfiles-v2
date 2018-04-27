@@ -7,6 +7,10 @@ This contains my personal vimrc config and some other stuffs that I modified to 
 
 [![VideoWalkthrough](https://img.youtube.com/vi/UgDz_9i2nwc/0.jpg)](https://www.youtube.com/watch?v=UgDz_9i2nwc)
 
+My Terminal Setup:
+![alt
+text](https://github.com/justinethomas009/dotfiles/terminal_settings/my_term_setup.png "This how my setup looks like")
+
 ## Setup Options
 
 There's 3 ways in which you can use this, depending on how much you think you'll be customizing.
@@ -43,9 +47,6 @@ This script guides you through the following:
 6. Installs silver searcher for searching(it's faster than grep)
 
 Pretty convenient for configuring new servers.
-
-Also you are free to install the fonts in the Fonts folder. I prefer IBM Plex
-Semibold Italic 11pt.
 
 # Sumary of Changes
 
@@ -98,15 +99,40 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 
 * I use `Vundle` for all my plugin installation. And the `deploy` script would
   have already installed all the plugins. You are free to modify the
-  `vimrc.vim` file in the folder and comment out the plugins you don't want to
+  `plugins.vim` file in the folder and comment out the plugins you don't want to
   install beforehand, that way Vundle won't download it in the first place.
 * The vim folder also has a `en.utf-8.add` file which will be your custom
   dictionary.
+
+### Vim custom Keybindings
+| Key Stroke | What It Does |
+|------------|--------------|
+| `<leader>g   `  | YCM goto defination or declaration |
+| `<leader>r   `  | Show interactively what you are searching to replace |
+| `<leader>u   `  | Toggle undo tree |
+| `<leader>t   `  | Toggle tagbar |
+| `<leader>s   `  | Use Ag(the silver searcher) to search for a pattern in your directory |
+| `<leader>e   `  | Edit your vimrc.vim file in dotfiles |
+| `<leader>bt  `   | Toggle buffer explorer |
+| `Ctrl-<space>`   | To do snippet expansion  |
 
 ## [Tmux](https://en.wikipedia.org/wiki/Tmux)
 
 * Ctrl-B has been remapped to the backtick character (&#96;). If you want to type the actual backtick character (&#96;) itself, just hit the key twice.
 * `%` has been remapped to `v`.
 * Use vim movement keys for moving between panes.
-* Copy buffer is coppied to xclip.
+* Copy buffer is copied to xclip.
 * Status bar tells you date, time, user, and hostname. Especially useful with nested ssh sessions.
+* Execute `split_panes` in your shell to split your window into 4 panes. This
+  is the way I like to use
+
+## [fonts]
+
+* The `fonts` folder has my preferred font in it which is already patched for
+  powerline.
+
+## [terminal_settings]
+
+* The `terminal_settings` folder contains my color scheme and my custom
+  background image(it's actually my name. I wrote on a piece of paper and did
+  some photoshop)
