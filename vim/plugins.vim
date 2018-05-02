@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
     "   Created:            Fri 27 Apr 2018 12:37:41 PM IST
-    "   Last Modified:      Fri 27 Apr 2018 06:55:51 PM IST
+    "   Last Modified:      Wed 02 May 2018 10:53:56 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     "Automatic reloading of .vimrc
@@ -110,6 +110,24 @@
 
         "19)Buffer explorer
             Plugin 'jlanzarotta/bufexplorer'
+
+        "20)Renamer bulk rename plugin
+            Plugin 'qpkorr/vim-renamer'
+
+        "21)Fugitive for git integration
+            Plugin 'tpope/vim-fugitive'
+
+        "22)Sourrounding with parenthesis
+            Plugin 'tpope/vim-surround'
+
+        "23)For commenting lines
+            Plugin 'scrooloose/nerdcommenter'
+
+        "24)Vim motion on speed
+            Plugin 'easymotion/vim-easymotion'
+
+        "25)Use multiple cursors like in sublime text
+            Plugin 'terryma/vim-multiple-cursors'
     "==========================================================================
         "All of your Plugins must be added before the following line
             call vundle#end()            " required

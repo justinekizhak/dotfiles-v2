@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Fri 27 Apr 2018 12:53:17 PM IST
+    "   Last Modified:      Wed 02 May 2018 10:55:33 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -26,7 +26,8 @@
         set relativenumber
 
     "Quick editing of vimrc
-        map <leader>e :e! ~/dotfiles/vim/vimrc.vim<cr>
+        map <leader>ev :e! ~/dotfiles/vim/vimrc.vim<cr>
+        map <leader>ep :e! ~/dotfiles/vim/plugins.vim<cr>
 
     "Yank to clipboard
         if has("clipboard")
@@ -44,11 +45,12 @@
             cd ~/MEGA/      "this will be your directory
         endif
 
-    "Show search matches as you type
-        set incsearch
-
-    "Highlight the entire word when searching for it
-        set hlsearch
+    "Make Vim deal with case-sensitive search intelligently
+        set ignorecase
+        set smartcase
+        set incsearch       "Show search matches as you type
+        set hlsearch        "Highlight the entire word when searching for it
+        set gdefault        "applies substitutions globally on lines"
 
     "Showing matching brackets
         set showmatch
@@ -93,7 +95,8 @@
                 		  " '<' and '>'
         set expandtab
         set shiftwidth=4
-        set softtabstop=4
+        set smarttab      " insert tabs on the start of a line according to
+                          " shiftwidth, not tabstop set softtabstop=4
 
     "Easier moving of code blocks
         " Try to go into visual mode (v), then select several lines of code here and
