@@ -64,7 +64,7 @@ Then once zsh logs in, within tmux, it updates the dotfiles repository, and sour
 
 ### Prompt
 
-The Prompt which I am using is Powerlevel9k which works on my Mac, but for some reason it was not working in my Ubuntu Virtual Machine. So on Linux the shell defaults to this custom Prompt. 
+The Prompt which I am using is Powerlevel9k which works on my Mac, but for some reason it was not working in my Ubuntu Virtual Machine. So on Linux the shell defaults to this custom Prompt.
 
 But the zshrc.sh has all my settings in it so you can work on it yourself. Anyway both Powerlevel9K and the custom prompt gives almost the same information like time to execute etc.
 
@@ -114,6 +114,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 | `<leader>g   `  | YCM goto defination or declaration |
 | `<leader>r   `  | Show interactively what you are searching to replace |
 | `<leader>u   `  | Toggle undo tree |
+| `<leader>T   `  | Use Command-T for searching |
 | `<leader>t   `  | Toggle tagbar |
 | `<leader>s   `  | Use Ag(the silver searcher) to search for a pattern in your directory |
 | `<leader>e   `  | Edit your vimrc.vim file in dotfiles |
