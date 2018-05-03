@@ -1,12 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
     "   Created:            Fri 27 Apr 2018 12:37:41 PM IST
-    "   Last Modified:      Thu 03 May 2018 02:21:45 PM IST
+    "   Last Modified:      Thu 03 May 2018 03:03:56 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "Automatic reloading of .vimrc
     autocmd! bufwritepost ~/dotfiles/vim/plugins.vim source ~/dotfiles/vim/plugins.vim
-
 """""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
         "required
             filetype off
