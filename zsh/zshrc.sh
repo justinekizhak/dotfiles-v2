@@ -66,7 +66,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
     # for contents on left and right
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status root_indicator background_jobs command_execution_time)
-        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vi_mode)
     # show error code
         POWERLEVEL9K_STATUS_OK=false
     # show raw error values
