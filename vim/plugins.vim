@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
     "   Created:            Fri 27 Apr 2018 12:37:41 PM IST
-    "   Last Modified:      Thu 03 May 2018 03:03:56 PM IST
+    "   Last Modified:      Mon 07 May 2018 02:02:08 PM IST IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automatic reloading of .vimrc
     autocmd! bufwritepost ~/dotfiles/vim/plugins.vim source ~/dotfiles/vim/plugins.vim
@@ -81,6 +81,8 @@ call plug#begin()
             Plug 'honza/vim-snippets'
         "If you want :UltiSnipsEdit to split your window.
             let g:UltiSnipsEditSplit="vertical"
+            "let g:UltiSnipsSnippetsDir='~/dotfiles/vim/UlitSnips/'
+            "let g:UltiSnipsSnippetDirectories=["UltiSnips", '~/dotfiles/vim/UltiSnips']
 
     "12)SuperTabs for better integration of ycm and ultisnips
         Plug 'ervandew/supertab'
@@ -121,6 +123,8 @@ call plug#begin()
 
     "20)Renamer bulk rename plugin
         Plug 'qpkorr/vim-renamer'
+        let g:RenamerSupportColonWToRename=1
+        nmap <Leader>rf <Plug>RenamerStart
 
     "21)Fugitive for git integration
         Plug 'tpope/vim-fugitive'
@@ -146,5 +150,12 @@ call plug#begin()
         let g:multi_cursor_prev_key            = '<C-p>'
         let g:multi_cursor_skip_key            = '<C-x>'
         let g:multi_cursor_quit_key            = '<Esc>'
+
+    "26)startup screen for vim
+        Plug 'mhinz/vim-startify'
+
+    "27)Use DevIcons
+        Plug 'ryanoasis/vim-devicons'
+        set encoding=UTF-8
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

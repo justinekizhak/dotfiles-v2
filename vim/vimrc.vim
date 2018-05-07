@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Thu 03 May 2018 03:02:53 PM IST
+    "   Last Modified:      Sun 06 May 2018 01:54:09 AM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -118,9 +118,6 @@
     "Enable folding
         set foldmethod=indent
         set foldlevel=99
-
-    "Ctrl-a to select all text
-        map <C-a> <esc>ggVG<CR>
 
     "Delete trailing spaces on write
         if has("autocmd")
