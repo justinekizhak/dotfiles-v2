@@ -1,3 +1,4 @@
+alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 # Vars
 	HISTFILE=~/.zsh_history
 	SAVEHIST=1000

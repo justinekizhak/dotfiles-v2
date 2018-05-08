@@ -1,39 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
     "   Created:            Fri 27 Apr 2018 12:37:41 PM IST
-    "   Last Modified:      Mon 07 May 2018 02:02:08 PM IST IST
+    "   Last Modified:      Tue 08 May 2018 01:46:17 AM IST IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automatic reloading of .vimrc
     autocmd! bufwritepost ~/dotfiles/vim/plugins.vim source ~/dotfiles/vim/plugins.vim
-"""""""""""""""""""""""""""""VUNDLE SETTINGS"""""""""""""""""""""""""""""""""""
-        "required
-            filetype off
-
-        "set the runtime path to include Vundle and initialize
-            set rtp+=~/.vim/bundle/Vundle.vim
-            call vundle#begin()
-
-        "Installing Vundle
-            Plugin 'VundleVim/Vundle.vim'
-
-        "Add all your plugins below (note older versions of Vundle used Bundle instead of Plugin)
-    "==========================================================================
-        "1) CommandT better file search
-            Plugin 'wincent/command-t'
-            nmap <silent> <Leader>T <Plug>(CommandT)
-            nmap <silent> <Leader>b <Plug>(CommandTBuffer)
-            nmap <silent> <Leader>j <Plug>(CommandTJump)
-
-        "2)YouCompleteMe code completion
-            Plugin 'Valloric/YouCompleteMe'
-            "Youcompleteme fix
-            let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-            noremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    "==========================================================================
-        "All of your Plugins must be added before the following line
-            call vundle#end()            " required
-            filetype plugin indent on    " required
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""VIM-PLUG SETTINGS"""""""""""""""""""""""""""""""""
 call plug#begin()
@@ -157,5 +128,31 @@ call plug#begin()
     "27)Use DevIcons
         Plug 'ryanoasis/vim-devicons'
         set encoding=UTF-8
+
+    "28) YCM
+        Plug 'Valloric/YouCompleteMe'
+        "Youcompleteme fix
+        let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+        noremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+    "29) CommandT better file search
+        Plug 'wincent/command-t'
+        nmap <silent> <Leader>T <Plug>(CommandT)
+        nmap <silent> <Leader>b <Plug>(CommandTBuffer)
+        nmap <silent> <Leader>j <Plug>(CommandTJump)
+
+    "30)Clang formatting
+        Plug 'rhysd/vim-clang-format'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+function! ClearRegisters()
+    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
+    let i=0
+    while (i<strlen(regs))
+        exec 'let @'.regs[i].'=""'
+        let i=i+1
+    endwhile
+endfunction
+
+command! ClearRegisters call ClearRegisters()
