@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Wed 02 May 2018 10:55:33 PM IST
+    "   Last Modified:      Fri 11 May 2018 09:21:51 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
@@ -38,12 +38,7 @@
         endif
 
     "Working directory
-        if has('unix')      "this will be your working directory
-            cd ~/           "if your OS is Linux
-        endif               "Please change these values for yourself
-        if has('macunix')   "if its macOS then
-            cd ~/MEGA/      "this will be your directory
-        endif
+        cd ~/My_Projects    "if your OS is Linux
 
     "Make Vim deal with case-sensitive search intelligently
         set ignorecase
@@ -119,9 +114,6 @@
         set foldmethod=indent
         set foldlevel=99
 
-    "Ctrl-a to select all text
-        map <C-a> <esc>ggVG<CR>
-
     "Delete trailing spaces on write
         if has("autocmd")
             autocmd BufWritePre * %s/\s\+$//e
@@ -131,6 +123,9 @@
         if executable('ag')
             set grepprg=ag\ --nogroup\ --nocolor
         endif
+
+    ""Very magic mode
+        "noremap / /\v
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""PLUGINS"""""""""""""""""""""""""""""""""""""""""""

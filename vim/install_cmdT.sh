@@ -8,7 +8,7 @@ fi
 
 install_cmdT () {
     echo "all good"
-    cd ~/.vim/bundle/command-t/ruby/command-t/ext/command-t
+    cd ~/.vim/plugged/command-t/ruby/command-t/ext/command-t
     ruby extconf.rb
     make
 }
