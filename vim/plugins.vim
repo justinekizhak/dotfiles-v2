@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Wed 09 May 2018 04:58:02 PM IST
+    "   Last Modified:      Sat 12 May 2018 12:17:20 AM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automatic reloading of .vimrc
     autocmd! bufwritepost ~/dotfiles/vim/plugins.vim source ~/dotfiles/vim/plugins.vim
@@ -50,11 +50,8 @@ call plug#begin()
             Plug 'honza/vim-snippets'
         "If you want :UltiSnipsEdit to split your window.
             let g:UltiSnipsEditSplit="vertical"
-            set rtp+=~/dotfiles/vim/my_snippets
-            let g:UltiSnipsSnippetDir=['UltiSnips', '~/dotfiles/vim/my_snippets']
-            let g:UltiSnipsSnippetDirectories=['UltiSnips', '~/dotfiles/vim/my_snippets/']
-            "let g:UltiSnipsSnippetDir=['UltiSnips', '~/.vim/my_snippets/']
-            "let g:UltiSnipsSnippetDirectories=['UltiSnips', '~/.vim/my_snippets/']
+            let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+            let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
     "10)SuperTabs for better integration of ycm and ultisnips
         Plug 'ervandew/supertab'
