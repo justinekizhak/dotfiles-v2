@@ -1,9 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Sat 12 May 2018 12:17:20 AM IST
+    "   Last Modified:      Sun 13 May 2018 02:34:53 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automatic reloading of .vimrc
-    autocmd! bufwritepost ~/dotfiles/vim/plugins.vim source ~/dotfiles/vim/plugins.vim
+    augroup sourcing_plugins
+        au!
+        autocmd! bufwritepost ~/dotfiles/vim/plugins.vim source ~/dotfiles/vim/plugins.vim
+    augroup END
 """""""""""""""""""""""""""""VIM-PLUG SETTINGS"""""""""""""""""""""""""""""""""
 call plug#begin()
     "1) Airline status bar

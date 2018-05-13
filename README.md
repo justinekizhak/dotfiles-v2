@@ -121,11 +121,12 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 | `<leader>ep   `  | Edit your plugins.vim file in dotfiles |
 | `<leader>bt  `   | Toggle [buffer explorer](https://github.com/jlanzarotta/bufexplorer) |
 | `<leader>rf  `   | For [Renaming files](https://github.com/qpkorr/vim-renamer) in vim |
+| `<leader>/  `   | For clearing highlighted search |
 | `<leader>c<space>  `   | To toggle [commenting of lines](https://github.com/scrooloose/nerdcommenter) |
 | `<ctrl-space>`   | To do [Ultisnips](https://github.com/SirVer/ultisnips)snippet expansion  |
 | `<ctrl-n>    `  | [NerdTree](https://github.com/scrooloose/nerdtree) toggle |
 
-### 
+###
 
 | [Multi Cursor Editing](https://github.com/terryma/vim-multiple-cursors)| &nbsp;|
 |---|---|
