@@ -1,3 +1,17 @@
+############################################################################
+# Last Modified:    Mon 14 May 2018 03:04:55 PM IST
+#
+# This file is part of project name
+# (see https://github.com/justinethomas009/dotfiles)
+# This file contains your zshrc settings
+#
+# Copyright (C) 2018, Justine T Kizhakkinedath
+# All rights reserved
+#
+# Licensed under the term of MIT License
+# See LICENSE file in the project root for full license information.
+############################################################################
+
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 # Vars
 	HISTFILE=~/.zsh_history
