@@ -1,7 +1,16 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Sun 13 May 2018 02:37:42 PM IST
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Last Modified:    Mon 14 May 2018 02:58:25 PM IST
+"
+" This file is part of my dotfiles
+" (see https://github.com/justinethomas009/dotfiles)
+" My vimrc file
+"
+" Copyright (C) 2018, Justine T Kizhakkinedath
+" All rights reserved
+"
+" Licensed under the term of MIT License
+" See LICENSE file in the project root for full license information.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc

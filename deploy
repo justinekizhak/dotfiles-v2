@@ -1,3 +1,17 @@
+############################################################################
+# Last Modified:    Mon 14 May 2018 02:59:43 PM IST
+#
+# This file is part of project name
+# (see https://github.com/justinethomas009/dotfiles)
+# This my deploy script
+#
+# Copyright (C) 2018, Justine T Kizhakkinedath
+# All rights reserved
+#
+# Licensed under the term of MIT License
+# See LICENSE file in the project root for full license information.
+############################################################################
+
 #!/usr/bin/env sh
 prompt_install() {
     if [ -x "$(command -v brew)" ]; then
