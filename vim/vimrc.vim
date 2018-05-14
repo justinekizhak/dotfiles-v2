@@ -1,11 +1,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Fri 11 May 2018 09:21:51 PM IST
+    "   Last Modified:      Sun 13 May 2018 02:37:42 PM IST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
-        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
+        augroup sourcing_vimrc
+            au!
+            autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
+        augroup END
 
     "Setting leader key
         let mapleader = ","
@@ -14,13 +17,21 @@
         set nocompatible
 
     "Spellcheck for vim
-        autocmd FileType latex,tex,md,markdown setlocal spell
-        set spelllang=en_us
-        set spellfile=~/dotfiles/vim/en.utf-8.add
+        augroup spell_check
+            au!
+            autocmd FileType latex,tex,md,markdown setlocal spell
+            set spelllang=en_us
+            set spellfile=~/dotfiles/vim/en.utf-8.add
+        augroup END
 
     "Syntax highlighting by default
         syntax on
-
+        set synmaxcol=128
+        syntax sync minlines=256
+        augroup syntax_highlighting
+            au!
+            autocmd BufEnter * :syn sync maxlines=500
+        augroup END
     "Numbering and relative numbering
         set number
         set relativenumber
@@ -46,6 +57,7 @@
         set incsearch       "Show search matches as you type
         set hlsearch        "Highlight the entire word when searching for it
         set gdefault        "applies substitutions globally on lines"
+        nmap <silent> ,/ :nohlsearch<CR>
 
     "Showing matching brackets
         set showmatch
@@ -115,9 +127,10 @@
         set foldlevel=99
 
     "Delete trailing spaces on write
-        if has("autocmd")
+        augroup delete_white_space
+            au!
             autocmd BufWritePre * %s/\s\+$//e
-        endif
+        augroup END
 
     " Use Ag over Grep
         if executable('ag')
@@ -126,6 +139,12 @@
 
     ""Very magic mode
         "noremap / /\v
+
+    "faster redrawing
+        set ttyfast
+
+    "screen rendering in buffers
+        set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""PLUGINS"""""""""""""""""""""""""""""""""""""""""""
