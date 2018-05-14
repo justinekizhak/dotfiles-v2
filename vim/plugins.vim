@@ -1,7 +1,17 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Sun 13 May 2018 02:34:53 PM IST
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Last Modified:    Mon 14 May 2018 02:57:30 PM IST
+"
+" This file is part of my dotfiles
+" (see https://github.com/justinethomas009/dotfiles)
+" This file contains all my vim plugins and their settings
+"
+" Copyright (C) 2018, Justine T Kizhakkinedath
+" All rights reserved
+"
+" Licensed under the term of MIT License
+" See LICENSE file in the project root for full license information.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "Automatic reloading of .vimrc
     augroup sourcing_plugins
         au!
@@ -45,6 +55,11 @@ call plug#begin()
 
     "8)Timestamp
         Plug 'vim-scripts/timestamp.vim'
+        augroup temp_timestamp_disble
+            au!
+            autocmd BufEnter *.snippets :DisableTimestamp
+            autocmd BufLeave *.snippets :EnableTimestamp
+        augroup END
 
     "9)UltiSnips snippets
         "Track the engine.

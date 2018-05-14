@@ -1,3 +1,18 @@
+############################################################################
+# Last Modified:    Mon 14 May 2018 02:52:21 PM IST
+#
+# This file is part of my dotfiles
+# (see https://github.com/justinethomas009/dotfiles)
+# Script to install YouCompleteMe provided it is downloaded in its default
+# location
+#
+# Copyright (C) 2018, Justine T Kizhakkinedath
+# All rights reserved
+#
+# Licensed under the term of MIT License
+# See LICENSE file in the project root for full license information.
+############################################################################
+
 #!/bin/bash
 has_vim=$(command -v vim >/dev/null)
 

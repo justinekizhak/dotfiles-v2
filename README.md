@@ -157,6 +157,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 ## Fonts
 
 * The `fonts` folder contains pre patched fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts).
+* The fonts provided has its own license.
 
 ## Terminal Settings
 
@@ -182,3 +183,8 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 3. After that then the script checks for files with `-old` in it and it
   renames it back.
 4. After the script ends then you are free to delete the `dotfiles` folder.
+
+## License
+This project is licensed under MIT.
+See LICENSE for more details.
+Please fork, contribute and share.
