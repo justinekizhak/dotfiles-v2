@@ -53,7 +53,16 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     version-control
+     ;; (version-control :variables
+     ;;                  version-control-diff-tool 'git-gutter
+     ;;                  version-control-diff-side 'left
+     ;;                  version-control-global-margin t
+     ;;  )
+     (version-control
+                      ;; version-control-diff-tool 'git-gutter
+                      ;; version-control-diff-side 'left
+                      ;; version-control-global-margin t
+      )
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -327,6 +336,11 @@ values."
   (setq powerline-default-separator 'utf-8)
 
   (global-git-gutter-mode +1)
+
+  ;; '(version-control :variables
+  ;;                   version-control-diff-tool 'diff-hl
+  ;;                   version-control-diff-side 'left
+  ;;                   version-control-global-margin t)
 
   ;; Use Emacs terminfo, not system terminfo
   (setq system-uses-terminfo nil)
