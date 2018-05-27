@@ -1,5 +1,5 @@
 ############################################################################
-# Last Modified:    Mon 14 May 2018 02:59:43 PM IST
+# Last Modified:    Tue 15 May 2018 02:09:48 AM IST
 #
 # This file is part of project name
 # (see https://github.com/justinethomas009/dotfiles)
@@ -97,6 +97,7 @@ check_for_software tmux &
 echo
 check_for_software clang-format &
 echo
+pip install grip
 
 check_default_shell
 

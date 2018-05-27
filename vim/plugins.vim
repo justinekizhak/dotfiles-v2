@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Last Modified:    Mon 14 May 2018 02:57:30 PM IST
+" Last Modified:    Fri 25 May 2018 12:19:11 PM IST
 "
 " This file is part of my dotfiles
 " (see https://github.com/justinethomas009/dotfiles)
@@ -84,7 +84,7 @@ call plug#begin()
 
     "11)highlight text as they are typed
         Plug 'osyo-manga/vim-over'
-        map <leader>r :OverCommandLine<CR>s/
+        map <leader>r :OverCommandLine<CR>
 
     "12)git diff
         Plug 'airblade/vim-gitgutter'
@@ -156,6 +156,16 @@ call plug#begin()
 
     "28)Clang formatting
         Plug 'rhysd/vim-clang-format'
+
+    "29)Solarised theme
+        Plug 'justinethomas009/vim-colors-solarized'
+
+    "30)Hightlight hex values
+        Plug 'vim-scripts/hexHighlight.vim'
+
+    "31)Show number of times search pattern found
+        Plug 'google/vim-searchindex'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

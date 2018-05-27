@@ -1,5 +1,5 @@
 ############################################################################
-# Last Modified:    Mon 14 May 2018 03:04:55 PM IST
+# Last Modified:    Sat 26 May 2018 03:29:36 AM IST
 #
 # This file is part of project name
 # (see https://github.com/justinethomas009/dotfiles)
@@ -12,43 +12,47 @@
 # See LICENSE file in the project root for full license information.
 ############################################################################
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM="xterm-256color"
+
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 # Vars
-	HISTFILE=~/.zsh_history
-	SAVEHIST=1000
-	setopt inc_append_history # To save every command before it is executed
-	setopt share_history # setopt inc_append_history
+  HISTFILE=~/.zsh_history
+  SAVEHIST=1000
+  setopt inc_append_history # To save every command before it is executed
+  setopt share_history # setopt inc_append_history
 
 # Settings
-	export VISUAL=vim
+  export VISUAL=vim
 
 source ~/dotfiles/zsh/plugins/fixls.zsh
 
 #Functions
-	# Loop a command and show the output in vim
-	loop() {
-		echo ":cq to quit\n" > /tmp/log/output
-		fc -ln -1 > /tmp/log/program
-		while true; do
-			cat /tmp/log/program >> /tmp/log/output ;
-			$(cat /tmp/log/program) |& tee -a /tmp/log/output ;
-			echo '\n' >> /tmp/log/output
-			vim + /tmp/log/output || break;
-			rm -rf /tmp/log/output
-		done;
-	}
+  # Loop a command and show the output in vim
+  loop() {
+    echo ":cq to quit\n" > /tmp/log/output
+    fc -ln -1 > /tmp/log/program
+    while true; do
+      cat /tmp/log/program >> /tmp/log/output ;
+      $(cat /tmp/log/program) |& tee -a /tmp/log/output ;
+      echo '\n' >> /tmp/log/output
+      vim + /tmp/log/output || break;
+      rm -rf /tmp/log/output
+    done;
+  }
 
-	# Custom cd
-	c() {
-		cd $1;
-		ls;
-	}
-	alias cd="c"
+  # Custom cd
+  c() {
+    cd $1;
+    ls;
+  }
+  alias cd="c"
 
     alias ls="ls -l"
 
 # For vim mappings:
-	stty -ixon
+  stty -ixon
 
 source ~/dotfiles/zsh/plugins/oh-my-zsh/lib/history.zsh
 source ~/dotfiles/zsh/plugins/oh-my-zsh/lib/key-bindings.zsh
@@ -61,19 +65,26 @@ source ~/dotfiles/zsh/keybindings.sh
 # Fix for arrow-key searching
 # start typing + [Up-Arrow] - fuzzy find history forward
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
-	autoload -U up-line-or-beginning-search
-	zle -N up-line-or-beginning-search
-	bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+  autoload -U up-line-or-beginning-search
+  zle -N up-line-or-beginning-search
+  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 fi
 # start typing + [Down-Arrow] - fuzzy find history backward
 if [[ "${terminfo[kcud1]}" != "" ]]; then
-	autoload -U down-line-or-beginning-search
-	zle -N down-line-or-beginning-search
-	bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+  autoload -U down-line-or-beginning-search
+  zle -N down-line-or-beginning-search
+  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
 # source ~/dotfiles/zsh/plugins/oh-my-zsh/themes/agnoster.zsh-theme
 # ZSH_THEME="agnoster"
+
+if [ -n "$INSIDE_EMACS" ]; then
+    # export ZSH_THEME="rawsyntax"
+    # export ZSH_THEME="agnoster"
+    ZSH_THEME="agnoster"
+fi
+
 
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then

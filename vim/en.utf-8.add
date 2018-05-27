@@ -4,3 +4,6 @@ X11
 macOS
 VUNDLE
 Vundle
+Makefile
+README
+executables

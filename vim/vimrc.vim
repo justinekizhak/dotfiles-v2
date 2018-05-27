@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Last Modified:    Mon 14 May 2018 02:58:25 PM IST
+" Last Modified:    Thu 24 May 2018 03:20:38 PM IST
 "
 " This file is part of my dotfiles
 " (see https://github.com/justinethomas009/dotfiles)
@@ -35,7 +35,7 @@
 
     "Syntax highlighting by default
         syntax on
-        set synmaxcol=128
+        set synmaxcol=80
         syntax sync minlines=256
         augroup syntax_highlighting
             au!
@@ -108,7 +108,7 @@
         set copyindent    " copy the previous indentation on auto indenting
         set shiftwidth=4  " number of spaces to use for auto indenting
         set shiftround    " use multiple of shift width when indenting with
-                		  " '<' and '>'
+                      " '<' and '>'
         set expandtab
         set shiftwidth=4
         set smarttab      " insert tabs on the start of a line according to
@@ -136,18 +136,22 @@
         set foldlevel=99
 
     "Delete trailing spaces on write
+        fun! StripTrailingWhitespace()
+            " Don't strip on these filetypes
+            if &ft =~ 'markdown'
+                return
+            endif
+            %s/\s\+$//e
+        endfun
         augroup delete_white_space
             au!
-            autocmd BufWritePre * %s/\s\+$//e
+            autocmd BufWritePre * call StripTrailingWhitespace()
         augroup END
 
     " Use Ag over Grep
         if executable('ag')
             set grepprg=ag\ --nogroup\ --nocolor
         endif
-
-    ""Very magic mode
-        "noremap / /\v
 
     "faster redrawing
         set ttyfast
