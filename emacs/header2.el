@@ -11,9 +11,9 @@
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 0
 ;; Package-Requires: ()
-;; Last-Updated: Wed 30 May 2018 15:09:31 IST
+;; Last-Updated: Wed 30 May 2018 15:52:41 IST
 ;;           By: Justine T Kizhakkinedath
-;;     Update #: 1980
+;;     Update #: 1982
 ;; URL: https://www.emacswiki.org/emacs/download/header2.el
 ;; Doc URL: https://emacswiki.org/emacs/AutomaticFileHeaders
 ;; Keywords: tools, docs, maint, abbrev, local
@@ -411,45 +411,6 @@ t means use local time with timezone; nil means use UTC."
 ;; after header-description.  That is not done here, by default, because I feel that
 ;; copyright is not the first information people are looking for.  Otherwise, this
 ;; default value corresponds to what the Elisp manual recommends for Emacs Lisp.
-;; ;; (defcustom make-header-hook '(
-;;                               header-mode-line
-;;                               ;; header-title
-;;                               ;; header-blank
-;;                               ;; header-file-name
-;;                               ;; header-description
-;;                               header-status
-;;                               ;; header-author
-;;                               ;; header-maintainer
-;;                               ;; header-copyright
-;;                               ;; header-creation-date
-;;                               header-rcs-id
-;;                               ;; header-version
-;;                               ;; header-pkg-requires
-;;                               header-sccs
-;;                               ;; header-modification-date
-;;                               ;; header-modification-author
-;;                               ;; header-update-count
-;;                               ;; header-url
-;;                               ;; header-doc-url
-;;                               ;; header-keywords
-;;                               ;; header-compatibility
-;;                               ;; header-blank
-;;                               ;; header-lib-requires
-;;                               ;; header-end-line
-;;                               ;; header-commentary
-;;                               ;; header-blank
-;;                               ;; header-blank
-;;                               ;; header-blank
-;;                               ;; header-end-line
-;;                               ;; header-history
-;;                               ;; header-blank
-;;                               ;; header-blank
-;;                               header-rcs-log
-;;                               ;; header-end-line
-;;                               ;; header-free-software
-;;                               ;; header-code
-;;                               ;; header-eof
-                              ;; )
 (defcustom make-header-hook '(
                               header-new-seperator
                               header-creation-date
@@ -868,28 +829,28 @@ work even when the value has embedded spaces or other junk."
   "Return a mode-specific prefix string for use in headers.
 It is sensitive to language-dependent comment conventions."
   (cond
-   ;; E.g. Lisp.
-   ((and comment-start (= 1 (length comment-start)))
-    (concat comment-start comment-start " "))
+    ;; E.g. Lisp.
+    ((and comment-start (= 1 (length comment-start)))
+     (concat comment-start comment-start " "))
 
-   ;; E.g. C++ and ADA.
-   ;; Special case, three letter comment-start where the first and
-   ;; second letters are the same.
-   ((and comment-start (= 3 (length comment-start))
-         (equal (aref comment-start 1) (aref comment-start 0)))
-    comment-start)
+    ;; E.g. C++ and ADA.
+    ;; Special case, three letter comment-start where the first and
+    ;; second letters are the same.
+    ((and comment-start (= 3 (length comment-start))
+          (equal (aref comment-start 1) (aref comment-start 0)))
+     comment-start)
 
-   ;; E.g. C.
-   ;; Other three-letter comment-start -> grab the middle character
-   ((and comment-start (= 3 (length comment-start)))
-    (concat " " (list (aref comment-start 1)) " "))
+    ;; E.g. C.
+    ;; Other three-letter comment-start -> grab the middle character
+    ((and comment-start (= 3 (length comment-start)))
+     (concat " " (list (aref comment-start 1)) " "))
 
-   ((and comment-start  (not (nonempty-comment-end)))
+    ((and comment-start  (not (nonempty-comment-end)))
 
-    ;; Note: no comment end implies that the full comment-start must be
-    ;; used on each line.
-    comment-start)
-   (t ";; ")))       ; Use Lisp as default.
+     ;; Note: no comment end implies that the full comment-start must be
+     ;; used on each line.
+     comment-start)
+    (t ";; ")))       ; Use Lisp as default.
 
 ;; Usable as a programming language mode hook.
 (defun auto-make-header ()
