@@ -340,21 +340,8 @@ values."
   This function is called at the very end of Spacemacs initialization."
   (setq powerline-default-separator 'utf-8)
 
-  ;; (global-git-gutter-mode +1)
-
-  ;; '(version-control :variables
-  ;;                   version-control-diff-tool 'diff-hl
-  ;;                   version-control-diff-side 'left
-  ;;                   version-control-global-margin t)
-
   ;; Use Emacs terminfo, not system terminfo
   (setq system-uses-terminfo nil)
-
-  ;; (setq ansi-term-program "/bin/zsh")
-
-  ;; (setq browse-url-browser-function 'browse-url-generic
-  ;;       engine/browser-function 'browse-url-generic
-  ;;       browse-url-generic-program "eww")
 
   (add-hook 'before-save-hook 'time-stamp)
   (add-hook 'write-file-hooks 'time-stamp) ; update when saving
@@ -365,29 +352,26 @@ values."
    )
 
   (add-to-list 'load-path "~/dotfiles/emacs/")
-  ;; (add-to-list 'load-path "~/.emacs.d/lisp/")
   (load "header2")
 
-  ;; To have Emacs update file headers automatically whenever you save a
-  ;; file, put this in your init file (~/.emacs):
+  (autoload 'auto-update-file-header "header2")
+  ;; (add-hook 'write-file-hooks 'auto-update-file-header)
+  (add-hook 'before-save-hook 'auto-update-file-header)
 
-    (autoload 'auto-update-file-header "header2")
-    ;; (add-hook 'write-file-hooks 'auto-update-file-header)
-    (add-hook 'before-save-hook 'auto-update-file-header)
+  (autoload 'auto-make-header "header2")
+  (add-hook 'emacs-lisp-mode-hook 'auto-make-header)
+  (add-hook 'c-mode-common-hook   'auto-make-header)
+  (add-hook 'python-mode-hook 'auto-make-header)
 
-  ;; To have Emacs add a file header whenever you create a new file in
-  ;; some mode, put this in your init file (~/.emacs):
+  (require 'org-ref)
 
-    (autoload 'auto-make-header "header2")
-    (add-hook 'emacs-lisp-mode-hook 'auto-make-header)
-    (add-hook 'c-mode-common-hook   'auto-make-header)
-    (add-hook 'python-mode-hook 'auto-make-header)
+  (load "git-link")
 
-    (require 'org-ref)
-
-
-    (load "git-link")
-
+  (setq undo-tree-auto-save-history t
+        undo-tree-history-directory-alist
+        `(("." . ,(concat spacemacs-cache-directory "undo"))))
+  (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
+    (make-directory (concat spacemacs-cache-directory "undo")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
