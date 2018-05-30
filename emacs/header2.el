@@ -11,9 +11,9 @@
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 0
 ;; Package-Requires: ()
-;; Last-Updated: Wed 30 May 2018 15:52:41 IST
+;; Last-Updated: Wed 30 May 2018 19:49:27 IST
 ;;           By: Justine T Kizhakkinedath
-;;     Update #: 1982
+;;     Update #: 1987
 ;; URL: https://www.emacswiki.org/emacs/download/header2.el
 ;; Doc URL: https://emacswiki.org/emacs/AutomaticFileHeaders
 ;; Keywords: tools, docs, maint, abbrev, local
@@ -548,8 +548,18 @@ packages."
 
 (defsubst header-custom-license ()
   "Insert custom-license line."
-  (insert header-prefix-string "Licensed under the terms of MIT License\n")
-  (insert header-prefix-string "See LICENSE file in the project root for full license information.\n"))
+  (if (projectile-project-root)
+      (inserting-license))
+ )
+
+(defsubst inserting-license ()
+  (insert header-prefix-string "Licensed under the terms of ")
+  (insert (car (with-temp-buffer
+      (insert-file-contents (concat (projectile-project-root) "LICENSE") nil 0 30)
+      (split-string (buffer-string) "\n" t)
+      )) "\n")
+  (insert header-prefix-string "See LICENSE file in the project root for full license information.\n")
+  )
 
 (defsubst header-custom-copyright ()
   "Insert custom-copyright line."
@@ -690,10 +700,8 @@ This is normally overwritten with each file save."
          (remote-info (when remote-url (git-link--parse-remote remote-url))))
     (if remote-info
         ;;todo: shouldn't assume https, need service specific handler like others
-        (insert (format "https://%s/%s\n" (car remote-info) (cadr remote-info)))
-      (error  "remote `%s' is unknown or contains an unsupported url" "origin")))
-  ;; (insert "\n")
-  )
+        (insert (format "https://%s/%s" (car remote-info) (cadr remote-info))))
+    (insert "\n")))
 
 (defsubst header-doc-url ()
   "Insert \"Doc URL: \" line."
