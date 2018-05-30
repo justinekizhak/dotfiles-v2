@@ -11,9 +11,9 @@
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 0
 ;; Package-Requires: ()
-;; Last-Updated: Wed 30 May 2018 19:49:27 IST
+;; Last-Updated: Wed 30 May 2018 21:09:28 IST
 ;;           By: Justine T Kizhakkinedath
-;;     Update #: 1987
+;;     Update #: 1992
 ;; URL: https://www.emacswiki.org/emacs/download/header2.el
 ;; Doc URL: https://emacswiki.org/emacs/AutomaticFileHeaders
 ;; Keywords: tools, docs, maint, abbrev, local
@@ -540,7 +540,27 @@ packages."
           (if (buffer-file-name)
               (file-name-nondirectory (buffer-file-name))
             (buffer-name))
-          " is part of " (projectile-project-name)"\n"))
+          " is part of "
+          (projectile-project-name)"\n")
+  )
+
+(defsubst header-file-name ()
+  "Insert the name of file and its association with a project"
+  (insert header-prefix-string
+      (if (buffer-file-name)
+          (file-name-nondirectory (buffer-file-name))
+        (buffer-name))
+      " is part of ")
+  (project-name-function)
+  (insert "\n")
+  )
+
+(defun project-name-function ()
+  "This will insert either the name of project if found
+or says that they are part of my personal projects"
+  (if (string= (projectile-project-name) "-")
+      (insert "my personal projects")
+    (insert (projectile-project-name))))
 
 (defsubst header-description ()
   "Insert \"Description: \" line."
@@ -548,8 +568,9 @@ packages."
 
 (defsubst header-custom-license ()
   "Insert custom-license line."
-  (if (projectile-project-root)
-      (inserting-license))
+  (if (string= (projectile-project-name) "-")
+      (insert header-prefix-string "LICENSE file not available\n")
+    (inserting-license))
  )
 
 (defsubst inserting-license ()
@@ -695,12 +716,13 @@ This is normally overwritten with each file save."
 
 (defsubst header-url ()
   "Insert \"URL: \" line."
-  (insert header-prefix-string "URL: ")
+  ;; (insert header-prefix-string "URL: ")
   (let* ((remote-url (git-link--remote-url "origin"))
          (remote-info (when remote-url (git-link--parse-remote remote-url))))
     (if remote-info
         ;;todo: shouldn't assume https, need service specific handler like others
-        (insert (format "https://%s/%s" (car remote-info) (cadr remote-info))))
+        (insert header-prefix-string "URL: " (format "https://%s/%s" (car remote-info) (cadr remote-info)))
+      (insert header-prefix-string "URL not available"))
     (insert "\n")))
 
 (defsubst header-doc-url ()
