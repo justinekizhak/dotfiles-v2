@@ -11,9 +11,9 @@
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 0
 ;; Package-Requires: ()
-;; Last-Updated: Wed 30 May 2018 21:09:28 IST
+;; Last-Updated: Thu 31 May 2018 00:39:52 IST
 ;;           By: Justine T Kizhakkinedath
-;;     Update #: 1992
+;;     Update #: 1995
 ;; URL: https://www.emacswiki.org/emacs/download/header2.el
 ;; Doc URL: https://emacswiki.org/emacs/AutomaticFileHeaders
 ;; Keywords: tools, docs, maint, abbrev, local
@@ -570,17 +570,25 @@ or says that they are part of my personal projects"
   "Insert custom-license line."
   (if (string= (projectile-project-name) "-")
       (insert header-prefix-string "LICENSE file not available\n")
-    (inserting-license))
+    (inserting-license-from-github))
  )
+
+(defsubst inserting-license-from-github ()
+  (insert header-prefix-string "Licensed under the terms of ")
+  (insert (get-license-from-github (cadr (git-link--parse-remote (git-link--remote-url "origin")))))
+  (insert header-prefix-string "See LICENSE file in the project root for full license information.\n"))
+
+(defsubst get-license-from-github (github-repo-short-url)
+  (interactive)
+  (shell-command-to-string (concat "python ~/dotfiles/emacs/get-public-license.py " github-repo-short-url)))
 
 (defsubst inserting-license ()
   (insert header-prefix-string "Licensed under the terms of ")
   (insert (car (with-temp-buffer
-      (insert-file-contents (concat (projectile-project-root) "LICENSE") nil 0 30)
-      (split-string (buffer-string) "\n" t)
-      )) "\n")
-  (insert header-prefix-string "See LICENSE file in the project root for full license information.\n")
-  )
+                 (insert-file-contents (concat (projectile-project-root) "LICENSE") nil 0 30)
+                 (split-string (buffer-string) "\n" t)
+                 )) "\n")
+  (insert header-prefix-string "See LICENSE file in the project root for full license information.\n"))
 
 (defsubst header-custom-copyright ()
   "Insert custom-copyright line."
