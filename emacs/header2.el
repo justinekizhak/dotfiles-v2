@@ -11,9 +11,9 @@
 ;; Created: Tue Aug  4 17:06:46 1987
 ;; Version: 0
 ;; Package-Requires: ()
-;; Last-Updated: Thu 31 May 2018 00:39:52 IST
+;; Last-Updated: Thu 31 May 2018 14:38:07 IST
 ;;           By: Justine T Kizhakkinedath
-;;     Update #: 1995
+;;     Update #: 2005
 ;; URL: https://www.emacswiki.org/emacs/download/header2.el
 ;; Doc URL: https://emacswiki.org/emacs/AutomaticFileHeaders
 ;; Keywords: tools, docs, maint, abbrev, local
@@ -32,7 +32,7 @@
 ;;
 ;; Commands (interactive functions) defined here:
 ;;
-;;   `make-header', `make-revision', `make-divider',
+;;   `make-file-header', `make-revision', `make-divider',
 ;;   `make-box-comment', `make-box-comment-region',
 ;;   `update-file-header'.
 ;;
@@ -65,7 +65,7 @@
 ;;   `header-copyright-notice', `header-date-format',
 ;;   `header-history-label', `header-max',
 ;;   `make-box-comment-region-replace-prefix-flag',
-;;   `make-header-hook'.
+;;   `make-file-header-hook', `make-package-header-hook'.
 ;;
 ;; Other variables defined here:
 ;;
@@ -411,12 +411,13 @@ t means use local time with timezone; nil means use UTC."
 ;; after header-description.  That is not done here, by default, because I feel that
 ;; copyright is not the first information people are looking for.  Otherwise, this
 ;; default value corresponds to what the Elisp manual recommends for Emacs Lisp.
-(defcustom make-header-hook '(
+
+(defcustom make-file-header-hook '(
                               header-new-seperator
                               header-creation-date
                               header-modification-date
                               header-blank
-                              header-file-name
+                              header-custom-file-name
                               header-url
                               header-description
                               header-blank
@@ -425,6 +426,7 @@ t means use local time with timezone; nil means use UTC."
                               header-custom-license
                               header-new-seperator
                               )
+
   "*Functions that insert header elements.
 Each function is started on a new line and is expected to end in a new line.
 Each function may insert any number of lines, but each line, including the
@@ -444,6 +446,64 @@ and `header-shell' might only apply to shell scripts.  See instructions in
 file `header2.el' to do this."
   :type 'hook :group 'Automatic-File-Header)
 
+(defcustom make-package-header-hook '(
+                              ;;header-mode-line
+                              header-title
+                              header-blank
+                              header-file-name
+                              header-description
+                              ;;header-status
+                              header-author
+                              header-maintainer
+                              header-copyright
+                              header-creation-date
+                              ;;header-rcs-id
+                              header-version
+                              header-pkg-requires
+                              ;;header-sccs
+                              header-modification-date
+                              header-modification-author
+                              header-update-count
+                              header-url
+                              header-doc-url
+                              header-keywords
+                              header-compatibility
+                              header-blank
+                              header-lib-requires
+                              header-end-line
+                              header-commentary
+                              header-blank
+                              header-blank
+                              header-blank
+                              header-end-line
+                              header-history
+                              header-blank
+                              header-blank
+                              ;; header-rcs-log
+                              header-end-line
+                              header-free-software
+                              header-code
+                              header-eof
+                              )
+
+  "*Functions that insert header elements.
+Each function is started on a new line and is expected to end in a new line.
+Each function may insert any number of lines, but each line, including the
+first, must be started with the value of `header-prefix-string'.
+\(This variable holds the same value as would be returned by calling
+`header-prefix-string' but is faster to access.)  Each function may set the
+following global variables:
+
+  `header-prefix-string' -- mode-specific comment sequence
+  `return-to' -- character position to which point will be moved after header
+                 functions are processed.  Any header function may set this,
+                 but only the last setting will take effect.
+
+It is reasonable to locally set these hooks according to certain modes.
+For example, a table of contents might only apply to code development modes
+and `header-shell' might only apply to shell scripts.  See instructions in
+file `header2.el' to do this."
+  :type 'hook :group 'Automatic-File-Header)
 (defcustom header-history-label "Change Log:" ; Was "HISTORY:" before.
   "*Label introducing change log history."
   :type 'string :group 'Automatic-File-Header)
@@ -534,17 +594,7 @@ packages."
                   " --- " "\n"))
   (setq return-to  (1- (point))))
 
-(defsubst header-file-name ()
-  "Insert \"Filename: \" line, using buffer's file name."
-  (insert header-prefix-string ""
-          (if (buffer-file-name)
-              (file-name-nondirectory (buffer-file-name))
-            (buffer-name))
-          " is part of "
-          (projectile-project-name)"\n")
-  )
-
-(defsubst header-file-name ()
+(defsubst header-custom-file-name ()
   "Insert the name of file and its association with a project"
   (insert header-prefix-string
       (if (buffer-file-name)
@@ -555,7 +605,15 @@ packages."
   (insert "\n")
   )
 
-(defun project-name-function ()
+(defsubst header-file-name ()
+  "Insert \"Filename: \" line, using buffer's file name."
+  (insert header-prefix-string "Filename: "
+          (if (buffer-file-name)
+              (file-name-nondirectory (buffer-file-name))
+            (buffer-name))
+          "\n"))
+
+(defsubst project-name-function ()
   "This will insert either the name of project if found
 or says that they are part of my personal projects"
   (if (string= (projectile-project-name) "-")
@@ -570,10 +628,13 @@ or says that they are part of my personal projects"
   "Insert custom-license line."
   (if (string= (projectile-project-name) "-")
       (insert header-prefix-string "LICENSE file not available\n")
-    (inserting-license-from-github))
+    (inserting-license))
  )
 
 (defsubst inserting-license-from-github ()
+  "This function will call a python function get-public-license.py
+which will do a get request and extract the license name from github"
+  ;;TODO: if no github link or if internet is not available then this doesn't work.
   (insert header-prefix-string "Licensed under the terms of ")
   (insert (get-license-from-github (cadr (git-link--parse-remote (git-link--remote-url "origin")))))
   (insert header-prefix-string "See LICENSE file in the project root for full license information.\n"))
@@ -583,6 +644,8 @@ or says that they are part of my personal projects"
   (shell-command-to-string (concat "python ~/dotfiles/emacs/get-public-license.py " github-repo-short-url)))
 
 (defsubst inserting-license ()
+  "Insert License info by using projectile to find the project-root and
+opening the file LICENSE and gets its first string"
   (insert header-prefix-string "Licensed under the terms of ")
   (insert (car (with-temp-buffer
                  (insert-file-contents (concat (projectile-project-root) "LICENSE") nil 0 30)
@@ -892,22 +955,36 @@ It is sensitive to language-dependent comment conventions."
 
 ;; Usable as a programming language mode hook.
 (defun auto-make-header ()
-  "Call `make-header' if current buffer is empty and is a file buffer."
+  "Call `make-file-header' if current buffer is empty and is a file buffer."
   (and (zerop (buffer-size)) (not buffer-read-only) (buffer-file-name)
-       (make-header)))
+       (make-file-header)))
 
 ;;;###autoload
-(defun make-header ()
+(defun make-file-header ()
   "Insert (mode-dependent) header comment at beginning of file.
 A header is composed of a mode line, a body, and an end line.  The body is
-constructed by calling the functions in `make-header-hook'.  The mode line
+constructed by calling the functions in `make-file-header-hook'.  The mode line
 and end lines start and terminate block comments.  The body lines continue
 the comment."
   (interactive)
   (beginning-of-buffer)                 ; Leave mark at old location.
-  (let* ((return-to             nil)    ; To be set by `make-header-hook'.
+  (let* ((return-to             nil)    ; To be set by `make-file-header-hook'.
          (header-prefix-string  (header-prefix-string))) ; Cache result.
-    (mapcar #'funcall make-header-hook)
+    (mapcar #'funcall make-file-header-hook)
+    (when return-to (goto-char return-to))))
+
+;;;###autoload
+(defun make-package-header ()
+  "Insert (mode-dependent) header comment at beginning of file.
+A header is composed of a mode line, a body, and an end line.  The body is
+constructed by calling the functions in `make-package-header-hook'.  The mode line
+and end lines start and terminate block comments.  The body lines continue
+the comment."
+  (interactive)
+  (beginning-of-buffer)                 ; Leave mark at old location.
+  (let* ((return-to             nil)    ; To be set by `make-package-header-hook'.
+         (header-prefix-string  (header-prefix-string))) ; Cache result.
+    (mapcar #'funcall make-package-header-hook)
     (when return-to (goto-char return-to))))
 
 ;;;###autoload
