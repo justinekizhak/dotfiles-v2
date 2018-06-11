@@ -2,7 +2,7 @@
 # Last Modified:    Mon 14 May 2018 02:52:21 PM IST
 #
 # This file is part of my dotfiles
-# (see https://github.com/justinethomas009/dotfiles)
+# (see https://github.com/justinethomas/dotfiles)
 # Script to install YouCompleteMe provided it is downloaded in its default
 # location
 #

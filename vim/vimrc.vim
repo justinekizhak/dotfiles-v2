@@ -2,7 +2,7 @@
 " Last Modified:    Thu 24 May 2018 03:20:38 PM IST
 "
 " This file is part of my dotfiles
-" (see https://github.com/justinethomas009/dotfiles)
+" (see https://github.com/justinethomas/dotfiles)
 " My vimrc file
 "
 " Copyright (C) 2018, Justine T Kizhakkinedath

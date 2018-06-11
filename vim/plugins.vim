@@ -2,7 +2,7 @@
 " Last Modified:    Fri 25 May 2018 12:19:11 PM IST
 "
 " This file is part of my dotfiles
-" (see https://github.com/justinethomas009/dotfiles)
+" (see https://github.com/justinethomas/dotfiles)
 " This file contains all my vim plugins and their settings
 "
 " Copyright (C) 2018, Justine T Kizhakkinedath

@@ -2,7 +2,7 @@
 # Last Modified:    Sat 26 May 2018 04:35:15 AM IST
 #
 # This file is part of project name
-# (see https://github.com/justinethomas009/dotfiles)
+# (see https://github.com/justinethomas/dotfiles)
 # When you launch a new terminal window this script runs first and
 # launches tmux. This script also make sures all your dotfiles are
 # updated with the github repo.

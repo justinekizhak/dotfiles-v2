@@ -4,7 +4,7 @@ Extensive customization of ZSH, TMUX, Vim and Spacemacs.
 
 #### This is how my terminal looks like
 ![alt
-text](https://github.com/justinethomas009/dotfiles/blob/master/terminal_settings/my_term_setup.png "This how my setup looks like")
+text](https://github.com/justinethomas/dotfiles/blob/master/terminal_settings/my_term_setup.png "This how my setup looks like")
 
 ## Setup Options
 
@@ -146,7 +146,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 * The `terminal_settings` folder contains my color scheme and my custom
   background image(it's actually my name. I wrote on a piece of paper and did
   some photoshop)
-  
+
 ## Spacemacs
 
 * I am trying out Spacemacs into my main workflow.

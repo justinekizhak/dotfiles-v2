@@ -2,7 +2,7 @@
 # Last Modified:    Sat 26 May 2018 03:29:36 AM IST
 #
 # This file is part of project name
-# (see https://github.com/justinethomas009/dotfiles)
+# (see https://github.com/justinethomas/dotfiles)
 # This file contains your zshrc settings
 #
 # Copyright (C) 2018, Justine T Kizhakkinedath
