@@ -92,8 +92,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Powerline for zsh
         source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
+    # Powerlevel on new line
+        # POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+        # POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+    # New line after prompt
+        POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
     # for contents on left and right
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status root_indicator background_jobs command_execution_time)
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs status root_indicator background_jobs command_execution_time newline os_icon)
         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv vi_mode)
     # show error code
         POWERLEVEL9K_STATUS_OK=false
@@ -107,6 +112,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         POWERLEVEL9K_VI_COMMAND_MODE_STRING="N"
     # using patched font
         POWERLEVEL9K_MODE='awesome-patched'
+    # Shorten dir names
+        POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+        POWERLEVEL9K_SHORTEN_DELIMITER=""
+        POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 fi
 
 
