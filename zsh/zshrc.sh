@@ -123,8 +123,11 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 
 export PATH=~/dotfiles/scripts:$PATH
+# export PATH=/Users/justinethomas009/Library/Python/3.6/bin:$PATH
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
+
+source ~/dotfiles/zsh/custom_functions.sh
