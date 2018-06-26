@@ -10,4 +10,4 @@ add-to-path () {
         fi
 }
 
-add-to-path /Users/justinethomas009/Library/Python/3.6/bin
+add-to-path /Users/justine/Library/Python/3.6/bin
