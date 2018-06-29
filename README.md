@@ -130,7 +130,7 @@ Each plugin is sensitive to where you are and what you're doing, they reveal the
 ## [Tmux](https://en.wikipedia.org/wiki/Tmux)
 
 * Ctrl-B has been remapped to the backtick character (&#96;). If you want to type the actual backtick character (&#96;) itself, just hit the key twice.
-* `%` has been remapped to `v`.
+<!-- * `%` has been remapped to `v`. -->
 * Use vim movement keys for moving between panes.
 * Copy buffer is copied to xclip.
 * Status bar tells you date, time, user, and hostname. Especially useful with nested ssh sessions.
