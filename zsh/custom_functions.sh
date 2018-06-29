@@ -9,5 +9,3 @@ add-to-path () {
            fi
         fi
 }
-
-add-to-path /Users/justine/Library/Python/3.6/bin

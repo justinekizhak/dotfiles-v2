@@ -28,28 +28,28 @@ alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 
 source ~/dotfiles/zsh/plugins/fixls.zsh
 
-#Functions
-  # Loop a command and show the output in vim
-  loop() {
-    echo ":cq to quit\n" > /tmp/log/output
-    fc -ln -1 > /tmp/log/program
-    while true; do
-      cat /tmp/log/program >> /tmp/log/output ;
-      $(cat /tmp/log/program) |& tee -a /tmp/log/output ;
-      echo '\n' >> /tmp/log/output
-      vim + /tmp/log/output || break;
-      rm -rf /tmp/log/output
-    done;
-  }
+# #Functions
+#   # Loop a command and show the output in vim
+#   loop() {
+#     echo ":cq to quit\n" > /tmp/log/output
+#     fc -ln -1 > /tmp/log/program
+#     while true; do
+#       cat /tmp/log/program >> /tmp/log/output ;
+#       $(cat /tmp/log/program) |& tee -a /tmp/log/output ;
+#       echo '\n' >> /tmp/log/output
+#       vim + /tmp/log/output || break;
+#       rm -rf /tmp/log/output
+#     done;
+#   }
 
-  # Custom cd
-  c() {
-    cd $1;
-    ls;
-  }
-  alias cd="c"
+#   # Custom cd
+#   c() {
+#     cd $1;
+#     ls;
+#   }
+#   alias cd="c"
 
-    alias ls="ls -l"
+alias ls="ls -l"
 
 # For vim mappings:
   stty -ixon
@@ -76,20 +76,20 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
-# source ~/dotfiles/zsh/plugins/oh-my-zsh/themes/agnoster.zsh-theme
-# ZSH_THEME="agnoster"
+source ~/dotfiles/zsh/plugins/oh-my-zsh/themes/agnoster.zsh-theme
+ZSH_THEME="agnoster"
 
-if [ -n "$INSIDE_EMACS" ]; then
-    # export ZSH_THEME="rawsyntax"
-    # export ZSH_THEME="agnoster"
-    ZSH_THEME="agnoster"
-fi
+# if [ -n "$INSIDE_EMACS" ]; then
+#     # export ZSH_THEME="rawsyntax"
+#     # export ZSH_THEME="agnoster"
+#     ZSH_THEME="agnoster"
+# fi
 
 
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    source ~/dotfiles/zsh/prompt.sh
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#     source ~/dotfiles/zsh/prompt.sh
+# elif [[ "$OSTYPE" == "darwin"* ]]; then
     # Powerline for zsh
         source  ~/dotfiles/zsh/plugins/powerlevel9k/powerlevel9k.zsh-theme
     # Powerlevel on new line
@@ -113,21 +113,24 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     # using patched font
         POWERLEVEL9K_MODE='awesome-patched'
     # Shorten dir names
-        POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-        POWERLEVEL9K_SHORTEN_DELIMITER=""
-        POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-fi
+        # POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+        # POWERLEVEL9K_SHORTEN_DELIMITER=""
+        # POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+# fi
 
 
 # refer this image https://misc.flogisoft.com/_media/bash/colors_format/256_colors_bg.png
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 
-export PATH=~/dotfiles/scripts:$PATH
+# export PATH=~/dotfiles/scripts:$PATH
 # export PATH=/Users/justinethomas009/Library/Python/3.6/bin:$PATH
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+#   eval "$(pyenv virtualenv-init -)"
+# fi
 
 source ~/dotfiles/zsh/custom_functions.sh
+
+add-to-path ~/dotfiles/scripts
+add-to-path /Users/justine/Library/Python/3.6/bin
