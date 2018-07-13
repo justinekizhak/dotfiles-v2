@@ -7,11 +7,10 @@
 # See LICENSE file in the project root for full information.
 # -----------------------------------------------------------------------------
 
-
-# source ~/python-virtualenvs/my_venv36/bin/activate
-if [ "$1" != "pypi" ]; then
-    ~/python-virtualenvs/my_venv36/bin/twine upload -r testpypi dist/*
-else
-    ~/python-virtualenvs/my_venv36/bin/twine upload -r pypi dist/*
-fi
-# deactivate
+rm -rf venv
+virtualenv venv
+source venv/bin/activate
+pip-create_package develop
+pip install ./dist/*.tar.gz
+deactivate
+source venv/bin/activate
