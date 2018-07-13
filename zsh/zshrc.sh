@@ -49,7 +49,7 @@ source ~/dotfiles/zsh/plugins/fixls.zsh
 #   }
 #   alias cd="c"
 
-alias ls="ls -l"
+alias ls="ls -la"
 
 # For vim mappings:
   stty -ixon
