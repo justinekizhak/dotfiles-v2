@@ -391,6 +391,8 @@ values."
   (setq ispell-program-name "/usr/local/bin/aspell")
 
   (spacemacs/toggle-display-time-on)
+  ;; (spacemacs/toggle-fill-column-indicator-on)
+  ;; (add-hook markdown-mode-hook 'spacemacs/toggle-global-whitespace-cleanup-off)
   ;; (spacemacs/toggle-golden-ratio)
   ;; (spacemacs/toggle-mode-line-minor-modes-off)
 
