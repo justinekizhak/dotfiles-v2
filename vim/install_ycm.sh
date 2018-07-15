@@ -1,3 +1,18 @@
+############################################################################
+# Last Modified:    Mon 14 May 2018 02:52:21 PM IST
+#
+# This file is part of my dotfiles
+# (see https://github.com/justinethomas/dotfiles)
+# Script to install YouCompleteMe provided it is downloaded in its default
+# location
+#
+# Copyright (C) 2018, Justine T Kizhakkinedath
+# All rights reserved
+#
+# Licensed under the term of MIT License
+# See LICENSE file in the project root for full license information.
+############################################################################
+
 #!/bin/bash
 has_vim=$(command -v vim >/dev/null)
 
@@ -15,7 +30,7 @@ download_llvm(){
         tar -xJf clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
         mv clang+llvm-6.0.0-x86_64-linux-gnu-ubuntu-16.04 llvm_root_dir
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        curl http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz
+        curl -O http://releases.llvm.org/6.0.0/clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz
         tar -xzf clang+llvm-6.0.0-x86_64-apple-darwin.tar.xz
         mv clang+llvm-6.0.0-x86_64-apple-darwin llvm_root_dir
     fi
@@ -29,15 +44,15 @@ dev_tools_for_ubuntu(){
 
 install_ycm () {
     echo "all good"
-    download_llvm
-    dev_tools_for_ubuntu
+    #download_llvm
+    #dev_tools_for_ubuntu
     cd ~
     mkdir ycm_build
     cd ycm_build
-    cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+    cmake -G "Unix Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DPATH_TO_LLVM_ROOT=~/ycm_temp/llvm_root_dir . ~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp
     cmake --build . --target ycm_core --config Release
-    cd ~/.vim/bundle/YouCompleteMe
-    python3 install.py --clang-completer
+    cd ~/.vim/plugged/YouCompleteMe
+    ./install.py --clang-completer
     rm -rf ~/ycm_temp
     rm -rf ~/ycm_build
 }

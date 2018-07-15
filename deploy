@@ -1,4 +1,18 @@
 #!/usr/bin/env sh
+############################################################################
+# Last Modified:    Tue 15 May 2018 02:09:48 AM IST
+#
+# This file is part of project name
+# (see https://github.com/justinethomas/dotfiles)
+# This my deploy script
+#
+# Copyright (C) 2018, Justine T Kizhakkinedath
+# All rights reserved
+#
+# Licensed under the term of MIT License
+# See LICENSE file in the project root for full license information.
+############################################################################
+
 prompt_install() {
     if [ -x "$(command -v brew)" ]; then
         brew install $1
@@ -12,23 +26,23 @@ prompt_install() {
 }
 
 check_for_software() {
-	echo "Checking to see if $1 is installed"
-	if ! [ -x "$(command -v $1)" ]; then
-		echo "$1 not_installed" >> ~/.changes
-		prompt_install $1
-	else
-		echo "$1 is installed."
-	    echo "$1 installed" >> ~/.changes
-	fi
+  echo "Checking to see if $1 is installed"
+  if ! [ -x "$(command -v $1)" ]; then
+    echo "$1 not_installed" >> ~/.changes
+    prompt_install $1
+  else
+    echo "$1 is installed."
+      echo "$1 installed" >> ~/.changes
+  fi
 }
 
 check_default_shell() { if [ -z "${SHELL##*zsh*}" ] ;then
-			echo "Default shell is zsh."
-			echo $SHELL >> ~/.changes
-	else
-	        echo $SHELL >> ~/.changes
-			chsh -s $(which zsh)
-	fi
+      echo "Default shell is zsh."
+      echo $SHELL >> ~/.changes
+  else
+          echo $SHELL >> ~/.changes
+      chsh -s $(which zsh)
+  fi
 }
 
 install_cmdT_fun() {
@@ -68,11 +82,11 @@ stty raw -echo
 answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
 stty $old_stty_cfg
 if echo "$answer" | grep -iq "^y" ;then
-	echo
-	echo -n  > ~/.changes
+  echo
+  echo -n  > ~/.changes
 else
-	echo "Quitting, nothing was changed."
-	exit 0
+  echo "Quitting, nothing was changed."
+  exit 0
 fi
 
 check_for_software zsh &
@@ -81,6 +95,9 @@ check_for_software vim &
 echo
 check_for_software tmux &
 echo
+check_for_software clang-format &
+echo
+pip install grip
 
 check_default_shell
 
@@ -101,17 +118,16 @@ fi
 printf "source '$HOME/dotfiles/zsh/zshrc_manager.sh'" > ~/.zshrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
+mkdir $HOME/.vim/undo
 
 echo
-cd ~ && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim -c 'PluginInstall' -c 'qa!'
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -c 'PlugInstall' -c 'qa!'
 
 install_cmdT_fun &
 install_ag_fun &
 install_ycm_fun &
-
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -c 'PlugInstall' -c 'qa!'
 
 wait
 echo "done with installing everything"

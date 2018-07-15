@@ -1,11 +1,23 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "   Created by:         JUSTINE THOMAS
-    "   Last Modified:      Wed 02 May 2018 10:55:33 PM IST
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Last Modified:    Thu 24 May 2018 03:20:38 PM IST
+"
+" This file is part of my dotfiles
+" (see https://github.com/justinethomas/dotfiles)
+" My vimrc file
+"
+" Copyright (C) 2018, Justine T Kizhakkinedath
+" All rights reserved
+"
+" Licensed under the term of MIT License
+" See LICENSE file in the project root for full license information.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""COMMON SETTINGS"""""""""""""""""""""""""""""""""""
     "Automatic reloading of .vimrc
-        autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
+        augroup sourcing_vimrc
+            au!
+            autocmd! bufwritepost ~/dotfiles/vim/vimrc.vim source ~/dotfiles/vim/vimrc.vim
+        augroup END
 
     "Setting leader key
         let mapleader = ","
@@ -14,13 +26,21 @@
         set nocompatible
 
     "Spellcheck for vim
-        autocmd FileType latex,tex,md,markdown setlocal spell
-        set spelllang=en_us
-        set spellfile=~/dotfiles/vim/en.utf-8.add
+        augroup spell_check
+            au!
+            autocmd FileType latex,tex,md,markdown setlocal spell
+            set spelllang=en_us
+            set spellfile=~/dotfiles/vim/en.utf-8.add
+        augroup END
 
     "Syntax highlighting by default
         syntax on
-
+        set synmaxcol=80
+        syntax sync minlines=256
+        augroup syntax_highlighting
+            au!
+            autocmd BufEnter * :syn sync maxlines=500
+        augroup END
     "Numbering and relative numbering
         set number
         set relativenumber
@@ -38,12 +58,7 @@
         endif
 
     "Working directory
-        if has('unix')      "this will be your working directory
-            cd ~/           "if your OS is Linux
-        endif               "Please change these values for yourself
-        if has('macunix')   "if its macOS then
-            cd ~/MEGA/      "this will be your directory
-        endif
+        cd ~/My_Projects    "if your OS is Linux
 
     "Make Vim deal with case-sensitive search intelligently
         set ignorecase
@@ -51,6 +66,7 @@
         set incsearch       "Show search matches as you type
         set hlsearch        "Highlight the entire word when searching for it
         set gdefault        "applies substitutions globally on lines"
+        nmap <silent> ,/ :nohlsearch<CR>
 
     "Showing matching brackets
         set showmatch
@@ -92,7 +108,7 @@
         set copyindent    " copy the previous indentation on auto indenting
         set shiftwidth=4  " number of spaces to use for auto indenting
         set shiftround    " use multiple of shift width when indenting with
-                		  " '<' and '>'
+                      " '<' and '>'
         set expandtab
         set shiftwidth=4
         set smarttab      " insert tabs on the start of a line according to
@@ -119,20 +135,31 @@
         set foldmethod=indent
         set foldlevel=99
 
-    "Ctrl-a to select all text
-        map <C-a> <esc>ggVG<CR>
-
     "Delete trailing spaces on write
-        if has("autocmd")
-            autocmd BufWritePre * %s/\s\+$//e
-        endif
+        fun! StripTrailingWhitespace()
+            " Don't strip on these filetypes
+            if &ft =~ 'markdown'
+                return
+            endif
+            %s/\s\+$//e
+        endfun
+        augroup delete_white_space
+            au!
+            autocmd BufWritePre * call StripTrailingWhitespace()
+        augroup END
 
     " Use Ag over Grep
         if executable('ag')
             set grepprg=ag\ --nogroup\ --nocolor
         endif
+
+    "faster redrawing
+        set ttyfast
+
+    "screen rendering in buffers
+        set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""PLUGINS"""""""""""""""""""""""""""""""""""""""""""
-so $HOME/dotfiles/vim/plugins.vim
+" so $HOME/dotfiles/vim/plugins.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

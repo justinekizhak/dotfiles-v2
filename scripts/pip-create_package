@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# -----------------------------------------------------------------------------
+# Copyright (c) 2018, Justine T Kizhakkinedath
+# All rights reserved
+#
+# Licensed under the terms of MIT License
+# See LICENSE file in the project root for full information.
+# -----------------------------------------------------------------------------
+
+
+# source ~/python-virtualenvs/my_venv36/bin/activate
+if [ "$1" != "develop" ]; then
+    python3 setup.py develop
+else
+    python3 setup.py sdist bdist_wheel
+fi
+# deactivate
